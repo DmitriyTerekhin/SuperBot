@@ -9,13 +9,19 @@
 /* Begin PBXBuildFile section */
 		9165C61B2959F745006DB70C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9165C61A2959F745006DB70C /* AppDelegate.swift */; };
 		9165C61D2959F745006DB70C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9165C61C2959F745006DB70C /* SceneDelegate.swift */; };
-		9165C61F2959F745006DB70C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9165C61E2959F745006DB70C /* ViewController.swift */; };
-		9165C6222959F745006DB70C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9165C6202959F745006DB70C /* Main.storyboard */; };
 		9165C6242959F74B006DB70C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9165C6232959F74B006DB70C /* Assets.xcassets */; };
 		9165C6272959F74B006DB70C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9165C6252959F74B006DB70C /* LaunchScreen.storyboard */; };
 		9165C6322959F74B006DB70C /* SortingBotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9165C6312959F74B006DB70C /* SortingBotTests.swift */; };
 		9165C63C2959F74B006DB70C /* SortingBotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9165C63B2959F74B006DB70C /* SortingBotUITests.swift */; };
 		9165C63E2959F74B006DB70C /* SortingBotUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9165C63D2959F74B006DB70C /* SortingBotUITestsLaunchTests.swift */; };
+		9165C6502959FD77006DB70C /* PresentationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9165C64F2959FD77006DB70C /* PresentationAssembly.swift */; };
+		9165C652295A01AF006DB70C /* AskPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9165C651295A01AF006DB70C /* AskPermissionsViewController.swift */; };
+		9165C654295A0212006DB70C /* AskPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9165C653295A0212006DB70C /* AskPermissionView.swift */; };
+		9165C65B295A0296006DB70C /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9165C656295A0296006DB70C /* Roboto-Medium.ttf */; };
+		9165C65C295A0296006DB70C /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9165C657295A0296006DB70C /* Roboto-Regular.ttf */; };
+		9165C65D295A0296006DB70C /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9165C658295A0296006DB70C /* Roboto-Bold.ttf */; };
+		9165C65E295A0296006DB70C /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9165C659295A0296006DB70C /* Roboto-Thin.ttf */; };
+		9165C65F295A0296006DB70C /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9165C65A295A0296006DB70C /* Roboto-Black.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +45,6 @@
 		9165C6172959F745006DB70C /* SortingBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SortingBot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9165C61A2959F745006DB70C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9165C61C2959F745006DB70C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9165C61E2959F745006DB70C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		9165C6212959F745006DB70C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9165C6232959F74B006DB70C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9165C6262959F74B006DB70C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9165C6282959F74B006DB70C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +53,14 @@
 		9165C6372959F74B006DB70C /* SortingBotUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SortingBotUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9165C63B2959F74B006DB70C /* SortingBotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingBotUITests.swift; sourceTree = "<group>"; };
 		9165C63D2959F74B006DB70C /* SortingBotUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingBotUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9165C64F2959FD77006DB70C /* PresentationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationAssembly.swift; sourceTree = "<group>"; };
+		9165C651295A01AF006DB70C /* AskPermissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskPermissionsViewController.swift; sourceTree = "<group>"; };
+		9165C653295A0212006DB70C /* AskPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskPermissionView.swift; sourceTree = "<group>"; };
+		9165C656295A0296006DB70C /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		9165C657295A0296006DB70C /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		9165C658295A0296006DB70C /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		9165C659295A0296006DB70C /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		9165C65A295A0296006DB70C /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +111,10 @@
 		9165C6192959F745006DB70C /* SortingBot */ = {
 			isa = PBXGroup;
 			children = (
-				9165C61A2959F745006DB70C /* AppDelegate.swift */,
-				9165C61C2959F745006DB70C /* SceneDelegate.swift */,
-				9165C61E2959F745006DB70C /* ViewController.swift */,
-				9165C6202959F745006DB70C /* Main.storyboard */,
-				9165C6232959F74B006DB70C /* Assets.xcassets */,
-				9165C6252959F74B006DB70C /* LaunchScreen.storyboard */,
-				9165C6282959F74B006DB70C /* Info.plist */,
+				9165C64D2959FC97006DB70C /* ServiceLayer */,
+				9165C64C2959FC91006DB70C /* CoreLayer */,
+				9165C64B2959FC85006DB70C /* PresentationLayer */,
+				9165C64A2959FB34006DB70C /* SupportingFiles */,
 			);
 			path = SortingBot;
 			sourceTree = "<group>";
@@ -125,6 +134,63 @@
 				9165C63D2959F74B006DB70C /* SortingBotUITestsLaunchTests.swift */,
 			);
 			path = SortingBotUITests;
+			sourceTree = "<group>";
+		};
+		9165C64A2959FB34006DB70C /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				9165C655295A0296006DB70C /* Fonts */,
+				9165C61A2959F745006DB70C /* AppDelegate.swift */,
+				9165C61C2959F745006DB70C /* SceneDelegate.swift */,
+				9165C6232959F74B006DB70C /* Assets.xcassets */,
+				9165C6252959F74B006DB70C /* LaunchScreen.storyboard */,
+				9165C6282959F74B006DB70C /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		9165C64B2959FC85006DB70C /* PresentationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				9165C660295A03BB006DB70C /* PermissionScreen */,
+				9165C64F2959FD77006DB70C /* PresentationAssembly.swift */,
+			);
+			path = PresentationLayer;
+			sourceTree = "<group>";
+		};
+		9165C64C2959FC91006DB70C /* CoreLayer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreLayer;
+			sourceTree = "<group>";
+		};
+		9165C64D2959FC97006DB70C /* ServiceLayer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ServiceLayer;
+			sourceTree = "<group>";
+		};
+		9165C655295A0296006DB70C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9165C656295A0296006DB70C /* Roboto-Medium.ttf */,
+				9165C657295A0296006DB70C /* Roboto-Regular.ttf */,
+				9165C658295A0296006DB70C /* Roboto-Bold.ttf */,
+				9165C659295A0296006DB70C /* Roboto-Thin.ttf */,
+				9165C65A295A0296006DB70C /* Roboto-Black.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		9165C660295A03BB006DB70C /* PermissionScreen */ = {
+			isa = PBXGroup;
+			children = (
+				9165C651295A01AF006DB70C /* AskPermissionsViewController.swift */,
+				9165C653295A0212006DB70C /* AskPermissionView.swift */,
+			);
+			path = PermissionScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +299,11 @@
 			files = (
 				9165C6272959F74B006DB70C /* LaunchScreen.storyboard in Resources */,
 				9165C6242959F74B006DB70C /* Assets.xcassets in Resources */,
-				9165C6222959F745006DB70C /* Main.storyboard in Resources */,
+				9165C65E295A0296006DB70C /* Roboto-Thin.ttf in Resources */,
+				9165C65D295A0296006DB70C /* Roboto-Bold.ttf in Resources */,
+				9165C65F295A0296006DB70C /* Roboto-Black.ttf in Resources */,
+				9165C65C295A0296006DB70C /* Roboto-Regular.ttf in Resources */,
+				9165C65B295A0296006DB70C /* Roboto-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +328,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9165C61F2959F745006DB70C /* ViewController.swift in Sources */,
+				9165C6502959FD77006DB70C /* PresentationAssembly.swift in Sources */,
 				9165C61B2959F745006DB70C /* AppDelegate.swift in Sources */,
+				9165C654295A0212006DB70C /* AskPermissionView.swift in Sources */,
 				9165C61D2959F745006DB70C /* SceneDelegate.swift in Sources */,
+				9165C652295A01AF006DB70C /* AskPermissionsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +369,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9165C6202959F745006DB70C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9165C6212959F745006DB70C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9165C6252959F74B006DB70C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -438,10 +502,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SortingBot/Info.plist;
+				INFOPLIST_FILE = SortingBot/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -465,10 +529,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SortingBot/Info.plist;
+				INFOPLIST_FILE = SortingBot/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
