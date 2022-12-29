@@ -230,6 +230,8 @@
 		9165C71F295CCCEE006DB70C /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		9165C721295CE25C006DB70C /* HistoryNumberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNumberCollectionViewCell.swift; sourceTree = "<group>"; };
 		C229C1E3CDB3DCD7A65DF221 /* Pods-SortingBot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SortingBot.release.xcconfig"; path = "Target Support Files/Pods-SortingBot/Pods-SortingBot.release.xcconfig"; sourceTree = "<group>"; };
+		C3B1F15F295E15F40097278C /* SortingBotRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SortingBotRelease.entitlements; sourceTree = "<group>"; };
+		C3BD3D35295E16E30015FFF0 /* SortingBot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SortingBot.entitlements; sourceTree = "<group>"; };
 		C7B1D629B79800F03394183C /* Pods_SortingBot_SortingBotUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SortingBot_SortingBotUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C99DA23012CD80711669139B /* Pods_SortingBot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SortingBot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F14C097E29153D10B202C94A /* Pods-SortingBot-SortingBotUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SortingBot-SortingBotUITests.release.xcconfig"; path = "Target Support Files/Pods-SortingBot-SortingBotUITests/Pods-SortingBot-SortingBotUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -290,6 +292,8 @@
 		9165C6192959F745006DB70C /* SortingBot */ = {
 			isa = PBXGroup;
 			children = (
+				C3BD3D35295E16E30015FFF0 /* SortingBot.entitlements */,
+				C3B1F15F295E15F40097278C /* SortingBotRelease.entitlements */,
 				9165C681295A3ED3006DB70C /* SizeHelper */,
 				9165C661295A349B006DB70C /* Extensions */,
 				9165C64D2959FC97006DB70C /* ServiceLayer */,
@@ -1158,8 +1162,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.SomeCompany.SortingBot;
+				MARKETING_VERSION = 1.0.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Walana.SortingBot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1173,7 +1177,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = SortingBot/SortingBotRelease.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SortingBot/SupportingFiles/Info.plist;
@@ -1187,8 +1193,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.SomeCompany.SortingBot;
+				MARKETING_VERSION = 1.0.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Walana.SortingBot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -19,9 +19,9 @@ enum SortingBotApiEndPoint: ApiConfiguration {
     
     var method: HTTPMethod {
         switch self {
-        case .countries, .setPremium, .appleAuth, .revokeAppleToken, .delete:
+        case .countries, .setPremium, .revokeAppleToken, .delete:
             return .get
-        case .updatePushToken, .auth:
+        case .updatePushToken, .auth, .appleAuth:
             return .post
         }
     }
@@ -70,6 +70,8 @@ enum SortingBotApiEndPoint: ApiConfiguration {
     
     var headers: HTTPHeaders {
         switch self {
+        case .appleAuth, .updatePushToken:
+            return [HTTPHeader.contentType("application/json; charset=UTF-8")]
         default:
             return HTTPHeaders(
                 [:]
@@ -81,6 +83,7 @@ enum SortingBotApiEndPoint: ApiConfiguration {
         let urlComp = NSURLComponents(string: ApiConstants.URL.mainURL.appending(path).addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!)!
         var items = [URLQueryItem]()
         // Параметры в урле
+        
         switch self {
         case .auth, .countries, .revokeAppleToken:
             if let parameters = parameters {
@@ -90,14 +93,31 @@ enum SortingBotApiEndPoint: ApiConfiguration {
                     }
                 }
             }
-        case .updatePushToken, .appleAuth: break
+        case .updatePushToken, .appleAuth:
+            break
         default:
             if let token = SecureStorage.shared.getToken() {
                 items.append(URLQueryItem(name: ApiConstants.APIParameterKey.token, value: token))
             }
         }
-        urlComp.queryItems = items
+        if !items.isEmpty {
+            urlComp.queryItems = items
+        }
         var urlRequest = URLRequest(url: urlComp.url!)
+        switch self {
+        case .appleAuth, .updatePushToken, .auth:
+            if let parameters = parameters {
+                do {
+                    let options = JSONSerialization.WritingOptions()
+                    urlRequest.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: options)
+                } catch {
+                    
+                    throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
+                }
+            }
+        default:
+            break
+        }
         urlRequest.httpMethod = method.rawValue
         urlRequest.headers = headers
         return urlRequest
