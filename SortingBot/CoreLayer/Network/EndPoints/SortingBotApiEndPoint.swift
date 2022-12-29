@@ -15,7 +15,7 @@ enum SortingBotApiEndPoint: ApiConfiguration {
     case countries(ip: String?)
     case setPremium(days: String?)
     case revokeAppleToken(appleId: String)
-    case updatePushToken(pushToken: String)
+    case updatePushToken(pushToken: String, countryCode: String)
     
     var method: HTTPMethod {
         switch self {
@@ -29,7 +29,7 @@ enum SortingBotApiEndPoint: ApiConfiguration {
     var path: String {
         switch self {
         case .appleAuth:
-            return "/api/apauth"
+            return "/api/apauth/index.php"
         case .auth:
             return "/api/auth"
         case .delete:
@@ -41,7 +41,7 @@ enum SortingBotApiEndPoint: ApiConfiguration {
         case .revokeAppleToken:
             return "/api/revokeToken"
         case .updatePushToken:
-            return "/api/push"
+            return "/api/push/index.php"
         }
     }
     
@@ -58,11 +58,10 @@ enum SortingBotApiEndPoint: ApiConfiguration {
                 return [ApiConstants.APIParameterKey.ip: ip]
             }
             return nil
-        case .updatePushToken(let pushToken):
-            guard let token = SecureStorage.shared.getToken() else { return nil }
+        case .updatePushToken(let pushToken, let countryCode):
             return [
-                ApiConstants.APIParameterKey.pushToken: pushToken,
-                ApiConstants.APIParameterKey.token: token
+                ApiConstants.APIParameterKey.token: pushToken,
+                ApiConstants.APIParameterKey.country: countryCode
             ]
         default:
             return nil

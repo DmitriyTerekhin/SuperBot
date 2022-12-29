@@ -71,8 +71,9 @@ class LaunchScreenViewController: UIViewController {
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
                 switch result {
-                case .success(let tab):
-                    strongSelf.routeToNextScreen(appWay: tab)
+                case .success(let launchModel):
+                    strongSelf.userInfoService.saveCountryCode(country: launchModel.countryCode)
+                    strongSelf.routeToNextScreen(appWay: launchModel.appWay)
                 case .failure(let error):
                     strongSelf.displayMsg(title: nil, msg: error.textToDisplay)
                 }

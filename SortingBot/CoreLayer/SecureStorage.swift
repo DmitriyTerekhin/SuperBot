@@ -18,6 +18,8 @@ protocol ISecureStorage {
     func getAppleToken() -> String?
     func saveToken(token: String, completionHandler: FinishedCompletionHandler)
     func savePushToken(token: String)
+    func saveCountry(country: String)
+    func getCountry() -> String?
     func deleteAllInfo(completionBlock: FinishedCompletionHandler)
 }
 
@@ -35,6 +37,7 @@ class SecureStorage: ISecureStorage {
         case appleRefreshToken
         case appleToken
         case pushToken
+        case countryCode
         
         var title: String {
             return self.rawValue
@@ -62,6 +65,10 @@ class SecureStorage: ISecureStorage {
         return keychain.getBool(Constants.premium.title) ?? false
     }
     
+    func getCountry() -> String? {
+        keychain.get(Constants.countryCode.title)
+    }
+    
     func saveAppleAccessToken(token: String) {
         keychain.set(token, forKey: Constants.appleAccessToken.title)
     }
@@ -76,5 +83,8 @@ class SecureStorage: ISecureStorage {
     }
     func savePushToken(token: String) {
         keychain.set(token, forKey: Constants.pushToken.title)
+    }
+    func saveCountry(country: String) {
+        keychain.set(country, forKey: Constants.countryCode.title)
     }
 }

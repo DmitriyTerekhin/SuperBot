@@ -27,6 +27,7 @@ enum ApiConstants {
         // Прочие
         static let ip = "ip"
         static let token = "token"
+        static let country = "country"
         
         // Apple params
         static let clientId = "client_id"

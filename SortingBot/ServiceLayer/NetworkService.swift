@@ -8,11 +8,11 @@
 import Foundation
 
 protocol INetworkService {
-    func getCountry(ip: String?, completion: @escaping (Result<AppWayByCountry, NetworkError>) -> Void)
+    func getCountry(ip: String?, completion: @escaping (Result<LaunchModel, NetworkError>) -> Void)
     func loadLink(completion: @escaping(Result<String, NetworkError>) -> Void)
     func makeAuth(code: String, completion: @escaping(Result<AuthModel, NetworkError>) -> Void)
     func makeAuth(token: String, completion: @escaping(Result<String, NetworkError>) -> Void)
-    func sendPushToken(token: String)
+    func sendPushToken(token: String, countryCode: String)
     func revokeToken(appleId: String)
     func addPremium(completion: @escaping (Result<(Bool, String), NetworkError>) -> Void)
     func deleteProfile(completion: @escaping(Result<Bool, NetworkError>) -> Void)
@@ -26,8 +26,7 @@ class NetworkService: INetworkService {
         self.requestSender = requestSender
     }
 
-    func getCountry(ip: String?, completion: @escaping (Result<AppWayByCountry, NetworkError>) -> Void) {
-//        completion(.success(.toApp))
+    func getCountry(ip: String?, completion: @escaping (Result<LaunchModel, NetworkError>) -> Void) {
         requestSender.send(requestConfig: ConfigFactory.getCountries(ip: nil),
                            completionHandler: completion)
     }
@@ -42,8 +41,8 @@ class NetworkService: INetworkService {
     func makeAuth(token: String, completion: @escaping (Result<String, NetworkError>) -> Void) {
         requestSender.send(requestConfig: ConfigFactory.auth(token: token), completionHandler: completion)
     }
-    func sendPushToken(token: String) {
-        requestSender.send(requestConfig: ConfigFactory.savePushToken(token: token)) { _ in }
+    func sendPushToken(token: String, countryCode: String) {
+        requestSender.send(requestConfig: ConfigFactory.savePushToken(token: token, country: countryCode)) { _ in }
     }
     func revokeToken(appleId: String) {
         requestSender.send(requestConfig: ConfigFactory.revokeAppleToken(appleId: appleId), completionHandler: {_ in})

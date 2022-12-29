@@ -11,10 +11,12 @@ protocol ISensentiveInfoService: AnyObject {
     func getToken() -> String?
     func saveToken(token: String, completionHandler: FinishedCompletionHandler)
     func saveAppleToken(token: String)
+    func saveCountryCode(country: String)
     func saveNotificationToken(token: String)
     func deleteAllInfo(completionBlock: FinishedCompletionHandler)
     func isUserInApp() -> Bool
     func savePremium()
+    func getCountry() -> String
     func isPremiumActive() -> Bool
     func getAppleToken() -> String?
     func wasPushAsked() -> Bool
@@ -54,6 +56,14 @@ class AppInfoService: ISensentiveInfoService {
     
     func isUserInApp() -> Bool {
         return appSettingsStorage.getUserInAppValue()
+    }
+    
+    func saveCountryCode(country: String) {
+        secureStorage.saveCountry(country: country)
+    }
+    
+    func getCountry() -> String {
+        secureStorage.getCountry() ?? ""
     }
     
     func savePremium() {

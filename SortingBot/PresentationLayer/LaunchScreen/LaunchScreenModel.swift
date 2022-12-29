@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct LaunchModel {
+    let countryCode: String
+    let appWay: AppWayByCountry
+}
+
 enum AppWayByCountry {
     case toApp
     case web

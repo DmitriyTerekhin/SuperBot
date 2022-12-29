@@ -26,8 +26,10 @@ struct ConfigFactory {
     static func auth(token: String) -> ApiRequestConfig<AuthParser> {
         return ApiRequestConfig(endPoint: SortingBotApiEndPoint.auth(token), parser: AuthParser())
     }
-    static func savePushToken(token: String) -> ApiRequestConfig<SavePushTokenParser> {
-        return ApiRequestConfig(endPoint: SortingBotApiEndPoint.updatePushToken(pushToken: token), parser: SavePushTokenParser())
+    static func savePushToken(token: String, country: String) -> ApiRequestConfig<SavePushTokenParser> {
+        return ApiRequestConfig(endPoint: SortingBotApiEndPoint.updatePushToken(pushToken: token,
+                                                                                countryCode: country),
+                                parser: SavePushTokenParser())
     }
     static func revokeAppleToken(appleId: String) -> ApiRequestConfig<AppleRevokeTokenParser> {
         return ApiRequestConfig(endPoint: SortingBotApiEndPoint.revokeAppleToken(appleId: appleId),
