@@ -2,19 +2,26 @@
 //  AppDelegate.swift
 //  SortingBot
 //
-//  Created by Дмитрий Терехин on 26.12.2022.
-//
 
 import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
+    let rootAssembly = RootAssembly()
+    let notificationCenter = UNUserNotificationCenter.current()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        notificationCenter.delegate = self
+        setupFrameworks()
+        if #available(iOS 13, *) { }
+        else { createStartView(window: window ?? UIWindow(frame: UIScreen.main.bounds)) }
         return true
+    }
+    
+    private func setupFrameworks() {
+//        IronSource.initWithAppKey(Constants.IronAppKey, delegate: self)
     }
 
     // MARK: UISceneSession Lifecycle
@@ -31,6 +38,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
+    private func createStartView(window: UIWindow) {
+        self.window = window
+        let countryCheckScreen = rootAssembly.presentationAssembly.getCountryCheckScreen()
+        window.rootViewController = countryCheckScreen
+        window.makeKeyAndVisible()
+    }
+    
+    func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {
+        guard
+            let window = self.window,
+            window.rootViewController != vc
+        else {
+            return
+        }
+        window.rootViewController = UINavigationController(rootViewController: vc)
+        window.makeKeyAndVisible()
+        UIView.transition(with: window,
+                          duration: 0.3,
+                          options: [.transitionCrossDissolve],
+                          animations: nil,
+                          completion: nil)
+    }
 
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        if #available(iOS 14.0, *) {
+            completionHandler([.sound, .badge, .banner])
+        } else {
+            completionHandler([.alert, .sound, .badge])
+        }
+    }
+    
+    func application( _ application: UIApplication,
+                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+        let token = tokenParts.joined()
+        print("Device Token: \(token)")
+        rootAssembly.serviceAssembly.userInfoService.saveNotificationToken(token: token)
+        rootAssembly.serviceAssembly.networkService.sendPushToken(token: token)
+    }
+
+    func application(
+        _ application: UIApplication,
+        didFailToRegisterForRemoteNotificationsWithError error: Error
+    ) {
+        print("Failed to register: \(error)")
+    }
+}

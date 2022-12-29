@@ -2,7 +2,6 @@
 //  SceneDelegate.swift
 //  SortingBot
 //
-//  Created by Дмитрий Терехин on 26.12.2022.
 //
 
 import UIKit
@@ -10,13 +9,35 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    let rootAssembly = RootAssembly()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let scene = (scene as? UIWindowScene) else { return }
+        let window = UIWindow(windowScene: scene)
+        createStartView(window: window)
+    }
+    
+    private func createStartView(window: UIWindow) {
+        self.window = window
+        let countryCheckScreen = rootAssembly.presentationAssembly.getCountryCheckScreen()
+        window.rootViewController = countryCheckScreen
+        window.makeKeyAndVisible()
+    }
+    
+    func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {
+        guard
+            let window = self.window,
+            window.rootViewController != vc
+        else {
+            return
+        }
+        window.rootViewController = UINavigationController(rootViewController: vc)
+        window.makeKeyAndVisible()
+        UIView.transition(with: window,
+                          duration: 0.3,
+                          options: [.transitionCrossDissolve],
+                          animations: nil,
+                          completion: nil)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

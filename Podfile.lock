@@ -1,0 +1,83 @@
+PODS:
+  - ActiveLabel (1.1.0)
+  - Alamofire (5.6.4)
+  - FSCalendar (2.8.4)
+  - InputMask (6.1.0)
+  - IQKeyboardManagerSwift (6.5.10)
+  - IronSourceSDK (7.2.5.0)
+  - KeychainAccess (4.2.2)
+  - KeychainSwift (19.0.0)
+  - Kingfisher (4.10.1)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
+  - ScreenType (1.1.0)
+  - SwiftSoup (2.4.3)
+  - SwiftyJSON (5.0.1)
+  - SwiftyUserDefaults (5.3.0)
+  - YandexMapsMobile (4.1.0-lite)
+  - YandexMobileMetrica/Dynamic (4.2.0):
+    - YandexMobileMetrica/Dynamic/Core (= 4.2.0)
+    - YandexMobileMetrica/Dynamic/Crashes (= 4.2.0)
+  - YandexMobileMetrica/Dynamic/Core (4.2.0)
+  - YandexMobileMetrica/Dynamic/Crashes (4.2.0):
+    - YandexMobileMetrica/Dynamic/Core
+
+DEPENDENCIES:
+  - ActiveLabel
+  - Alamofire
+  - FSCalendar
+  - InputMask
+  - IQKeyboardManagerSwift (>= 6.5.0)
+  - IronSourceSDK (= 7.2.5.0)
+  - KeychainAccess
+  - KeychainSwift (~> 19.0)
+  - Kingfisher (~> 4.0)
+  - NVActivityIndicatorView
+  - ScreenType
+  - SwiftSoup
+  - SwiftyJSON
+  - SwiftyUserDefaults
+  - YandexMapsMobile (= 4.1.0-lite)
+  - YandexMobileMetrica/Dynamic (= 4.2.0)
+
+SPEC REPOS:
+  trunk:
+    - ActiveLabel
+    - Alamofire
+    - FSCalendar
+    - InputMask
+    - IQKeyboardManagerSwift
+    - IronSourceSDK
+    - KeychainAccess
+    - KeychainSwift
+    - Kingfisher
+    - NVActivityIndicatorView
+    - ScreenType
+    - SwiftSoup
+    - SwiftyJSON
+    - SwiftyUserDefaults
+    - YandexMapsMobile
+    - YandexMobileMetrica
+
+SPEC CHECKSUMS:
+  ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
+  InputMask: 71d291dc54d2deaeac6512afb6ec2304228c0bb7
+  IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
+  IronSourceSDK: 59c9e16fa10f7b27e07df9edfbcf5a4bfc9ccfb3
+  KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
+  KeychainSwift: a06190cf933ad46b1e0abc3d77d29c06331715c7
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
+  ScreenType: aa607eaa564b5e533876a4df92a5b9de1a8dc579
+  SwiftSoup: 3384f2e618cfc1b3cbc7852c16692fe8de13fb8f
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  SwiftyUserDefaults: 63f80248cf5bfb3458825d9a78f2eb7e1293a040
+  YandexMapsMobile: 549f83d16cb7d1ea73031163722852f408b85841
+  YandexMobileMetrica: f5f9c605eaaba33ff6ab2b6bc3259035ca60ed87
+
+PODFILE CHECKSUM: 0409a1bee4812089fb6aac3573d37e8574049971
+
+COCOAPODS: 1.11.3
