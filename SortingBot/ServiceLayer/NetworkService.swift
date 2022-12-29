@@ -27,7 +27,9 @@ class NetworkService: INetworkService {
     }
 
     func getCountry(ip: String?, completion: @escaping (Result<AppWayByCountry, NetworkError>) -> Void) {
-        completion(.success(.toApp))
+//        completion(.success(.toApp))
+        requestSender.send(requestConfig: ConfigFactory.getCountries(ip: nil),
+                           completionHandler: completion)
     }
     func loadLink(completion: @escaping(Result<String, NetworkError>) -> Void) {
         requestSender.send(requestConfig: ConfigFactory.loadLink(), completionHandler: completion)

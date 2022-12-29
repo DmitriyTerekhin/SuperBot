@@ -10,7 +10,7 @@ import Foundation
 enum ApiConstants {
     
     enum URL {
-        static let mainURL = "https://get-nacional.space"
+        static let mainURL = "https://sortingbot.space"
         static let appleURL = "https://appleid.apple.com/auth/revoke"
         static let countryLink = "https://blazr.pw/trs/get.json"
     }

@@ -46,15 +46,14 @@ class EnterViewController: UIViewController {
     
     private func setupView() {
         contentView.signInHandler = {
-            self.goToTabbar()
-//            let provider = ASAuthorizationAppleIDProvider()
-//            let request = provider.createRequest()
-//            request.requestedScopes = [.email]
-//
-//            let controller = ASAuthorizationController(authorizationRequests: [request])
-//            controller.delegate = self
-//            controller.presentationContextProvider = self
-//            controller.performRequests()
+            let provider = ASAuthorizationAppleIDProvider()
+            let request = provider.createRequest()
+            request.requestedScopes = [.email]
+            
+            let controller = ASAuthorizationController(authorizationRequests: [request])
+            controller.delegate = self
+            controller.presentationContextProvider = self
+            controller.performRequests()
         }
     }
     
@@ -114,7 +113,7 @@ extension EnterViewController: ASAuthorizationControllerDelegate {
                 let code = credentiontials.authorizationCode,
                 let codeString = String(data: code, encoding: .utf8)
             else { return }
-            print(codeString)
+            print("code: \(codeString)")
             makeAppleAuth(code: codeString)
         default:
             break
