@@ -10,14 +10,19 @@ import UIKit
 class ActivityListViewController: UIViewController {
     
     private let contentView = ActivityListView()
+    private let databaseService: IDatabaseService
     private var dataSource: [ActivityModel]
     
     override func loadView() {
         view = contentView
     }
     
-    init(activityModels: [ActivityModel]) {
+    init(
+        activityModels: [ActivityModel],
+        databaseService: IDatabaseService
+    ) {
         self.dataSource = activityModels
+        self.databaseService = databaseService
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -41,6 +46,24 @@ class ActivityListViewController: UIViewController {
 
 }
 
+// MARK: - Delegate
+extension ActivityListViewController: ActivityListTableViewCellDelegate {
+    func doneButtonTapped(activity: ActivityModel) {
+        let predicate = NSPredicate(format: "name = %@ AND important == \(activity.howImportant) AND urgent == \(activity.howUrgent)",
+                                    argumentArray: [activity.name])
+        databaseService.deleteActivity(predicate: predicate) {
+            dataSource.removeAll(where: {
+                $0.name == activity.name && $0.howUrgent == activity.howUrgent && $0.howImportant == activity.howImportant
+            })
+            self.contentView.tableView.reloadData()
+            guard dataSource.isEmpty else {
+                return
+            }
+            self.backButtonTapped()
+        }
+    }
+}
+
 // MARK: - tableView nethods
 extension ActivityListViewController: UITableViewDataSource {
     
@@ -53,8 +76,7 @@ extension ActivityListViewController: UITableViewDataSource {
         if let model = dataSource[safe: indexPath.row] {
             cell.setup(with: model)
         }
+        cell.delegate = self
         return cell
     }
-    
-    
 }

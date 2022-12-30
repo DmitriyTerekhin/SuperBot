@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ActivityListTableViewCellDelegate: AnyObject {
+    func doneButtonTapped(activity: ActivityModel)
+}
+
 class ActivityListTableViewCell: UITableViewCell, ReusableView {
     
     private enum Constants {
@@ -14,10 +18,10 @@ class ActivityListTableViewCell: UITableViewCell, ReusableView {
         static let imageSize: CGFloat = 40
     }
     
-    private let tickAcktivityImamgeView: UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(named: "TickActivity")
-        return iv
+    private let doneButtonView: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(named: "TickActivity"), for: .normal)
+        return btn
     }()
     
     private let colorView: UIView = {
@@ -43,6 +47,9 @@ class ActivityListTableViewCell: UITableViewCell, ReusableView {
         lbl.setFont(fontName: .robotoRegular, sizeXS: 10)
         return lbl
     }()
+    
+    weak var delegate: ActivityListTableViewCellDelegate?
+    private var model: ActivityModel?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -53,7 +60,14 @@ class ActivityListTableViewCell: UITableViewCell, ReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc
+    func doneTapped() {
+        guard let model = model else { return }
+        delegate?.doneButtonTapped(activity: model)
+    }
+    
     func setup(with model: ActivityModel) {
+        self.model = model
         if let image = model.image {
             activityImageView.image = UIImage(data: image)
         }
@@ -61,12 +75,13 @@ class ActivityListTableViewCell: UITableViewCell, ReusableView {
     }
     
     private func setupView() {
+        doneButtonView.addTarget(self, action: #selector(doneTapped), for: .touchUpInside)
         backgroundColor = .clear
         activityImageView.layer.cornerRadius = Constants.imageSize/2
         
         contentView.addSubview(colorView)
         colorView.addSubview(activityImageView)
-        colorView.addSubview(tickAcktivityImamgeView)
+        colorView.addSubview(doneButtonView)
         colorView.addSubview(titleLabel)
         
         colorView.translatesAutoresizingMaskIntoConstraints = false
@@ -83,18 +98,18 @@ class ActivityListTableViewCell: UITableViewCell, ReusableView {
         activityImageView.heightAnchor.constraint(equalToConstant: Constants.imageSize).isActive = true
         activityImageView.centerYAnchor.constraint(equalTo: activityImageView.superview!.centerYAnchor).isActive = true
         
-        tickAcktivityImamgeView.translatesAutoresizingMaskIntoConstraints = false
-        tickAcktivityImamgeView.rightAnchor.constraint(equalTo: tickAcktivityImamgeView.superview!.rightAnchor,
+        doneButtonView.translatesAutoresizingMaskIntoConstraints = false
+        doneButtonView.rightAnchor.constraint(equalTo: doneButtonView.superview!.rightAnchor,
                                                        constant: -13).isActive = true
-        tickAcktivityImamgeView.widthAnchor.constraint(equalToConstant: Constants.imageSize).isActive = true
-        tickAcktivityImamgeView.heightAnchor.constraint(equalToConstant: Constants.imageSize).isActive = true
-        tickAcktivityImamgeView.centerYAnchor.constraint(equalTo: tickAcktivityImamgeView.superview!.centerYAnchor).isActive = true
+        doneButtonView.widthAnchor.constraint(equalToConstant: Constants.imageSize).isActive = true
+        doneButtonView.heightAnchor.constraint(equalToConstant: Constants.imageSize).isActive = true
+        doneButtonView.centerYAnchor.constraint(equalTo: doneButtonView.superview!.centerYAnchor).isActive = true
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.leftAnchor.constraint(equalTo: activityImageView.rightAnchor, constant: 13).isActive = true
         titleLabel.topAnchor.constraint(greaterThanOrEqualTo: titleLabel.superview!.topAnchor, constant: 5).isActive = true
         titleLabel.centerYAnchor.constraint(equalTo: titleLabel.superview!.centerYAnchor).isActive = true
-        titleLabel.rightAnchor.constraint(lessThanOrEqualTo: tickAcktivityImamgeView.leftAnchor, constant: -13).isActive = true
+        titleLabel.rightAnchor.constraint(lessThanOrEqualTo: doneButtonView.leftAnchor, constant: -13).isActive = true
         titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: titleLabel.superview!.bottomAnchor, constant: -5).isActive = true
     }
     

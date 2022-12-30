@@ -81,7 +81,7 @@ class SettingsPresenter: ISettingsPresenter {
                 guard let strongSelf = self else { return }
                 switch result {
                 case .success(_):
-                    strongSelf.sendToSucceedPurchases()
+                    strongSelf.userInfoService.savePremium()
                 case .failure(let error):
                     print(error)
                 }
@@ -108,26 +108,9 @@ class SettingsPresenter: ISettingsPresenter {
         purchasesService.restorePurchases { [weak self] result in
             switch result {
             case .success:
-                self?.sendToSucceedPurchases()
+                self?.userInfoService.savePremium()
             case .failure(let error):
                 self?.view?.showMessage(text: error.localizedDescription)
-            }
-        }
-    }
-    
-    private func sendToSucceedPurchases() {
-        networkService.addPremium { [weak self] result in
-            guard let strongSelf = self else { return }
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let succesResult):
-                    if succesResult.0 {
-                        strongSelf.userInfoService.savePremium()
-                        strongSelf.view?.showMessage(text: succesResult.1)
-                    }
-                case .failure(let error):
-                    strongSelf.view?.showMessage(text: error.localizedDescription)
-                }
             }
         }
     }

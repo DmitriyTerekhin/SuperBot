@@ -10,7 +10,7 @@ import UIKit
 class CreateActivityFinalView: UIView {
     
     private enum Constants {
-        static let imageSize = resized(size: CGSize(width: 271, height: 271), basedOn: .width)
+        static let imageSize = resized(size: CGSize(width: 260, height: 260), basedOn: .width)
     }
 
     let activityImageView = UIImageView()

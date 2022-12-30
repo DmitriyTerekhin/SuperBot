@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ISInitializationDelegate 
         else { createStartView(window: window ?? UIWindow(frame: UIScreen.main.bounds)) }
         return true
     }
-//    Pods/IronSourceSDK/IronSource/IronSource.xcframework/ios-arm64_x86_64-simulator/IronSource.framework/Headers/IronSource.h
+
     private func setupFrameworks() {
         IronSource.initWithAppKey(Constants.IronAppKey, delegate: self)
     }

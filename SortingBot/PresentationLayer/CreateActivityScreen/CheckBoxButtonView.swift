@@ -77,13 +77,12 @@ class CheckBoxButtonView: UIView {
         checkBoxButton.leftAnchor.constraint(equalTo: checkBoxButton.superview!.leftAnchor, constant: 0).isActive = true
         checkBoxButton.widthAnchor.constraint(equalToConstant: 8).isActive = true
         checkBoxButton.heightAnchor.constraint(equalToConstant: 8).isActive = true
-        checkBoxButton.centerYAnchor.constraint(equalTo: textView.centerYAnchor, constant: -5).isActive = true
+        checkBoxButton.centerYAnchor.constraint(equalTo: textView.centerYAnchor, constant: 0).isActive = true
         checkBoxButton.translatesAutoresizingMaskIntoConstraints = false
                 
-        textView.topAnchor.constraint(equalTo: textView.superview!.topAnchor, constant: -4).isActive = true
         textView.leftAnchor.constraint(equalTo: checkBoxButton.rightAnchor, constant: 5).isActive = true
         textView.rightAnchor.constraint(equalTo: textView.superview!.rightAnchor, constant: 0).isActive = true
-        textView.bottomAnchor.constraint(equalTo: textView.superview!.bottomAnchor, constant: 9).isActive = true
+        textView.centerYAnchor.constraint(equalTo: textView.superview!.centerYAnchor).isActive = true
         textView.translatesAutoresizingMaskIntoConstraints = false
     }
 }

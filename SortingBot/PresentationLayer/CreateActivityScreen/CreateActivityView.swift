@@ -371,24 +371,25 @@ class CreateActivityView: UIView {
         
         // StackView
         stackView.topAnchor.constraint(equalTo: mainButton.bottomAnchor, constant: 4).isActive = true
-        stackView.bottomAnchor.constraint(lessThanOrEqualTo: stackView.superview!.bottomAnchor, constant: 0).isActive = true
+        stackView.bottomAnchor.constraint(lessThanOrEqualTo: stackView.superview!.bottomAnchor,
+                                          constant: -10).isActive = true
         stackView.leftAnchor.constraint(equalTo: mainButton.leftAnchor).isActive = true
         stackView.rightAnchor.constraint(equalTo: mainButton.rightAnchor).isActive = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         // PrivacyCheckBox
         stackView.addArrangedSubview(privacyCheckBox)
-        privacyCheckBox.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        privacyCheckBox.heightAnchor.constraint(equalToConstant: 18).isActive = true
         privacyCheckBox.translatesAutoresizingMaskIntoConstraints = false
         
         // TermsCheckBox
         stackView.addArrangedSubview(termsCheckBox)
-        termsCheckBox.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        termsCheckBox.heightAnchor.constraint(equalToConstant: 18).isActive = true
         termsCheckBox.translatesAutoresizingMaskIntoConstraints = false
         
         // UserGeneratedCheckBox
         stackView.addArrangedSubview(userGeneratedCheckBox)
-        userGeneratedCheckBox.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        userGeneratedCheckBox.heightAnchor.constraint(equalToConstant: 18).isActive = true
         userGeneratedCheckBox.translatesAutoresizingMaskIntoConstraints = false
         
     }

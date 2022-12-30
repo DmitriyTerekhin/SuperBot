@@ -12,7 +12,7 @@ class CustomTabBarController: UITabBarController, CustomTabBarDelegate {
     static var tabbarBottomDistance: CGFloat {
         let screenLongestSide: CGFloat = max(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
         // 736 < SE,6,7,8
-        return screenLongestSide < 736 ? 15 : CGFloat(59).dp
+        return screenLongestSide < 736 ? 15 : adapted(dimensionSize: 59, to: .width)
     }
     static let tabbarHeight: CGFloat = CGFloat(70).dp
     

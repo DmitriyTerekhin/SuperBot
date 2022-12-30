@@ -12,7 +12,7 @@ enum ApiConstants {
     enum URL {
         static let mainURL = "https://sortingbot.space"
         static let appleURL = "https://appleid.apple.com/auth/revoke"
-        static let countryLink = "https://blazr.pw/trs/get.json"
+        static let countryLink = "https://sortingbot.space/current/tethering.json"
     }
     
     enum APIParameterKey {

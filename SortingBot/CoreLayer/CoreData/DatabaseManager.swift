@@ -13,6 +13,7 @@ protocol IStorageManager: AnyObject {
                     with context: NSManagedObjectContext,
                     completionHandler: FinishedCompletionHandler)
     func getResults(withPredicate: NSPredicate?, by context: NSManagedObjectContext) -> [ActivityModelDB]
+    func deleteActivity(predicate: NSPredicate, by context: NSManagedObjectContext, completion: VoidCompletionHandler)
 }
 
 class DatabaseStorage: IStorageManager {
@@ -28,5 +29,12 @@ class DatabaseStorage: IStorageManager {
     
     func getResults(withPredicate: NSPredicate?, by context: NSManagedObjectContext) -> [ActivityModelDB] {
         return ActivityModelDB.fetch(in: context, configurationBlock: { request in request.predicate = withPredicate})
+    }
+    
+    func deleteActivity(predicate: NSPredicate, by context: NSManagedObjectContext, completion: VoidCompletionHandler) {
+        guard let activity = ActivityModelDB.findOrFetch(in: context, matching: predicate) else { return }
+        context.delete(activity)
+        _ = context.saveOrRollback()
+        completion()
     }
 }

@@ -86,7 +86,7 @@ class ActivityHistoryViewController: UIViewController {
     }
     
     private func showActivityList(models: [ActivityModel]) {
-        let actListVC = ActivityListViewController(activityModels: models)
+        let actListVC = ActivityListViewController(activityModels: models, databaseService: databaseService)
         navigationController?.pushViewController(actListVC, animated: true)
     }
     
