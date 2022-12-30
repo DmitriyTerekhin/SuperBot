@@ -128,8 +128,8 @@ class EnterView: UIView {
         let attributedString = termsAndPolicyTextView.addHyperLinksToText(
             originalText: text as String,
             hyperLinks: [
-                Constants.privacy: "https://get-nacional.space/privacy.html",
-                Constants.terms: "https://get-nacional.space/terms.html"
+                Constants.privacy: "\(ApiConstants.URL.mainURL)/privacy.html",
+                Constants.terms: "\(ApiConstants.URL.mainURL)/terms.html"
             ],
             font:  UIFont(font: .robotoRegular, size: 12)
         )

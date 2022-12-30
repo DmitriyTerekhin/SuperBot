@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import IronSource
 
 class CreateActivityViewController: UIViewController {
     
@@ -44,6 +45,7 @@ class CreateActivityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        IronSource.setRewardedVideoDelegate(self)
     }
     
     private func setupView() {
@@ -60,8 +62,12 @@ class CreateActivityViewController: UIViewController {
     func mainButtonTapped() {
         switch viewState {
         case .start:
-            viewState = .creatingActivity
-            contentView.enableMainButton(forceDisable: !presenter.nameAndPhotoWasInserted)
+            if !presenter.isPremiumActive() && IronSource.hasRewardedVideo() {
+                IronSource.showRewardedVideo(with: self, placement: nil)
+            } else {
+                afterShowingAdd()
+            }
+
         case .creatingActivity:
             guard presenter.nameAndPhotoWasInserted else { return }
             viewState = .addingPoints
@@ -138,6 +144,11 @@ class CreateActivityViewController: UIViewController {
             break
         }
     }
+    
+    private func afterShowingAdd() {
+        viewState = .creatingActivity
+        contentView.enableMainButton(forceDisable: !presenter.nameAndPhotoWasInserted)
+    }
 
 }
 
@@ -202,6 +213,7 @@ extension CreateActivityViewController: UICollectionViewDataSource, UICollection
     }
 }
 
+// MARK: - Image Picker
 extension CreateActivityViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
  
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -213,6 +225,32 @@ extension CreateActivityViewController: UIImagePickerControllerDelegate, UINavig
         presenter.saveImage(data: imageData)
     }
     
+}
+
+//MARK: - IronSource video delegate
+extension CreateActivityViewController: ISRewardedVideoDelegate {
+    func rewardedVideoHasChangedAvailability(_ available: Bool) {
+        print("video is available == \(available)")
+    }
+
+    func didReceiveReward(forPlacement placementInfo: ISPlacementInfo!) {}
+
+    func rewardedVideoDidFailToShowWithError(_ error: Error!) {}
+
+    func rewardedVideoDidOpen() {}
+
+    func rewardedVideoDidStart() {}
+
+    func rewardedVideoDidEnd() {
+        afterShowingAdd()
+    }
+
+    func didClickRewardedVideo(_ placementInfo: ISPlacementInfo!) {}
+
+    // Iron Source delegate
+    public func rewardedVideoDidClose() {
+        afterShowingAdd()
+    }
 }
 
 private extension UIImage {

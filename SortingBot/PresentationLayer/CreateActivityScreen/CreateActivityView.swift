@@ -21,12 +21,12 @@ class CreateActivityView: UIView {
         
         static let privacyText: String = "I agree with Privacy policy of service"
         static let privacyClickableText: String = "Privacy policy"
-        static let privacySite: String = "https://super-best.fun/privacy.html"
+        static let privacySite: String = "\(ApiConstants.URL.mainURL)/privacy.html"
         static let termsAndConditionsText: String = "I agree with Terms and conditions of service"
-        static let termsAndConditionsSite: String = "https://super-best.fun/terms.html"
+        static let termsAndConditionsSite: String = "\(ApiConstants.URL.mainURL)/terms.html"
         static let termsAndConditionsClickableText: String = "Terms and conditions"
         static let userGeneratedText: String = "I agree with user generated content rules of service"
-        static let userGeneratedSite: String = "https://Blazr.pw/content.html"
+        static let userGeneratedSite: String = "\(ApiConstants.URL.mainURL)/content.html"
         static let userGeneratedClickableText: String = "user generated content rules"
     }
     

@@ -51,7 +51,8 @@ class PresentationAssembly: IPresentationAssembly {
     }
     
     func createActivityScreen() -> CreateActivityViewController {
-        CreateActivityViewController(presenter: CreateActivityPresenter(databaseService: serviceAssembly.databaseService))
+        CreateActivityViewController(presenter: CreateActivityPresenter(databaseService: serviceAssembly.databaseService,
+                                                                        sensetiveUserService: serviceAssembly.userInfoService))
     }
 
     func activityHistoryScreen() -> ActivityHistoryViewController {

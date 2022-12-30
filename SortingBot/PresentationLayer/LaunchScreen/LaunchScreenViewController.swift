@@ -49,9 +49,7 @@ class LaunchScreenViewController: UIViewController {
     }
     
     private func checkCountry() {
-        DispatchQueue.global(qos: .background).async {
-            self.getCountry(ip: nil)
-        }
+        getCountry(ip: nil)
     }
     
     private func getPublicIPAddress() -> String {

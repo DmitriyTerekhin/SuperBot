@@ -21,7 +21,7 @@ target 'SortingBot' do
   pod 'YandexMapsMobile', '4.1.0-lite'
   pod 'YandexMobileMetrica/Dynamic', '4.2.0'
   pod 'FSCalendar'
-  pod 'IronSourceSDK','7.2.5.0'
+  pod 'IronSourceSDK','7.2.6.0'
 
   target 'SortingBotTests' do
     inherit! :search_paths

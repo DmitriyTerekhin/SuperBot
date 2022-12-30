@@ -20,6 +20,7 @@ protocol ICreateActivityPresenter: AnyObject {
     func saveUrgentValue(_ value: Int)
     func deleteActivityModel()
     func saveActivity()
+    func isPremiumActive() -> Bool
 }
 
 protocol ICreateActivityView: AnyObject {
@@ -37,6 +38,7 @@ class CreateActivityPresenter: ICreateActivityPresenter {
     var currentImportant: Int {  return activityModel.howImportant }
     var currentImageData: Data? { return activityModel.image }
     var databaseService: IDatabaseService
+    var userInfoService: ISensentiveInfoService
     
     var activityModel: ActivityModel = ActivityModel()
     
@@ -44,8 +46,12 @@ class CreateActivityPresenter: ICreateActivityPresenter {
         return activityModel.image != nil && activityModel.name.count >= 3
     }
     
-    init(databaseService: IDatabaseService) {
+    init(
+        databaseService: IDatabaseService,
+        sensetiveUserService: ISensentiveInfoService
+    ) {
         self.databaseService = databaseService
+        self.userInfoService = sensetiveUserService
     }
     
     func saveImportantValue(_ value: Int) {
@@ -74,6 +80,10 @@ class CreateActivityPresenter: ICreateActivityPresenter {
     
     func deleteActivityModel() {
         activityModel = ActivityModel()
+    }
+    
+    func isPremiumActive() -> Bool {
+        userInfoService.isPremiumActive()
     }
     
     func saveActivity() {

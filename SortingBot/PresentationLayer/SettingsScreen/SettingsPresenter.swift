@@ -23,10 +23,6 @@ protocol ISettingsView: AnyObject {
 
 class SettingsPresenter: ISettingsPresenter {
     
-    private enum Constants {
-        static let baseURL: String = "https://BlazR.pw"
-    }
-    
     private weak var view: ISettingsView?
     private let networkService: INetworkService
     private let userInfoService: ISensentiveInfoService
@@ -65,11 +61,11 @@ class SettingsPresenter: ISettingsPresenter {
         case .buyPremium:
             buyRemoveAdd()
         case .feedback:
-            view?.routeToWebSite("\(Constants.baseURL)/#three")
+            view?.routeToWebSite("\(ApiConstants.URL.mainURL)/#three")
         case .privacy:
-            view?.routeToWebSite("\(Constants.baseURL)/privacy.html")
+            view?.routeToWebSite("\(ApiConstants.URL.mainURL)/privacy.html")
         case .terms:
-            view?.routeToWebSite("\(Constants.baseURL)/terms.html")
+            view?.routeToWebSite("\(ApiConstants.URL.mainURL)/terms.html")
         case .restorePurchases:
             restorePurchases()
         case .deleteAccount:

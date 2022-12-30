@@ -4,9 +4,14 @@
 //
 
 import UIKit
+import IronSource
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, ISInitializationDelegate {
+    
+    enum Constants {
+        static let IronAppKey = "18013d3ed"
+    }
 
     var window: UIWindow?
     let rootAssembly = RootAssembly()
@@ -19,9 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         else { createStartView(window: window ?? UIWindow(frame: UIScreen.main.bounds)) }
         return true
     }
-    
+//    Pods/IronSourceSDK/IronSource/IronSource.xcframework/ios-arm64_x86_64-simulator/IronSource.framework/Headers/IronSource.h
     private func setupFrameworks() {
-//        IronSource.initWithAppKey(Constants.IronAppKey, delegate: self)
+        IronSource.initWithAppKey(Constants.IronAppKey, delegate: self)
+    }
+    
+    func initializationDidComplete() {
+        ISIntegrationHelper.validateIntegration()
     }
 
     // MARK: UISceneSession Lifecycle
