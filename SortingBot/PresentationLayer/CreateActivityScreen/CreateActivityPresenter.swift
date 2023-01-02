@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ApphudSDK
 
 protocol ICreateActivityPresenter: AnyObject {
     var nameAndPhotoWasInserted: Bool { get }
@@ -37,8 +38,9 @@ class CreateActivityPresenter: ICreateActivityPresenter {
     var currentUrgent: Int { return activityModel.howUrgent }
     var currentImportant: Int {  return activityModel.howImportant }
     var currentImageData: Data? { return activityModel.image }
-    var databaseService: IDatabaseService
-    var userInfoService: ISensentiveInfoService
+    private let databaseService: IDatabaseService
+    private let userInfoService: ISensentiveInfoService
+    private let productService: IProductService
     
     var activityModel: ActivityModel = ActivityModel()
     
@@ -48,10 +50,12 @@ class CreateActivityPresenter: ICreateActivityPresenter {
     
     init(
         databaseService: IDatabaseService,
-        sensetiveUserService: ISensentiveInfoService
+        sensetiveUserService: ISensentiveInfoService,
+        purchasesService: IProductService
     ) {
         self.databaseService = databaseService
         self.userInfoService = sensetiveUserService
+        self.productService = purchasesService
     }
     
     func saveImportantValue(_ value: Int) {
@@ -83,7 +87,7 @@ class CreateActivityPresenter: ICreateActivityPresenter {
     }
     
     func isPremiumActive() -> Bool {
-        userInfoService.isPremiumActive()
+        return Apphud.isNonRenewingPurchaseActive(productIdentifier: productService.removeAdsId)
     }
     
     func saveActivity() {

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ApphudSDK
 
 protocol ISettingsPresenter: AnyObject {
     func attachView(view: ISettingsView)
@@ -50,7 +51,7 @@ class SettingsPresenter: ISettingsPresenter {
             SettingType.restorePurchases,
             SettingType.deleteAccount
         ]
-        if !userInfoService.isPremiumActive() {
+        if !Apphud.isNonRenewingPurchaseActive(productIdentifier: purchasesService.removeAdsId) {
             source.insert(SettingType.buyPremium, at: 0)
         }
         return source
@@ -75,17 +76,28 @@ class SettingsPresenter: ISettingsPresenter {
     
     func buyRemoveAdd() {
         view?.showLoader()
-        purchasesService.buyAddsOff { [ weak self] result in
-            DispatchQueue.main.async {
+        Apphud.purchase(purchasesService.removeAdsId) { [weak self] _
+            in
+            self?.validateCheck(completion: { _ in
                 self?.view?.hideLoader()
-                guard let strongSelf = self else { return }
-                switch result {
-                case .success(_):
-                    strongSelf.userInfoService.savePremium()
-                case .failure(let error):
-                    print(error)
-                }
+            })
+        }
+    }
+    
+    private func validateCheck(completion: @escaping (Bool) -> Void) {
+        Apphud.validateReceipt { [weak self] subscriptions, nonRenewinPurchases, error in
+            guard let strongSelf = self else { return }
+            if let removeAdds = subscriptions?.first(where: {$0.productId == strongSelf.purchasesService.removeAdsId}),
+               removeAdds.isActive()
+            {
+                completion(true)
             }
+            if let removeAdds = nonRenewinPurchases?.first(where: {$0.productId == strongSelf.purchasesService.removeAdsId}),
+               removeAdds.isActive()
+            {
+                completion(true)
+            }
+            completion(false)
         }
     }
     
@@ -95,6 +107,7 @@ class SettingsPresenter: ISettingsPresenter {
                 guard let strongSelf = self else { return }
                 switch result {
                 case .success(_):
+                    Apphud.logout()
                     strongSelf.revokeAppleToken()
                     strongSelf.goToEnterScreen()
                 case .failure(_):
@@ -105,14 +118,7 @@ class SettingsPresenter: ISettingsPresenter {
     }
     
     private func restorePurchases() {
-        purchasesService.restorePurchases { [weak self] result in
-            switch result {
-            case .success:
-                self?.userInfoService.savePremium()
-            case .failure(let error):
-                self?.view?.showMessage(text: error.localizedDescription)
-            }
-        }
+        Apphud.restorePurchases { _, _, _ in }
     }
     
     private func revokeAppleToken() {

@@ -8,6 +8,7 @@
 import Foundation
 
 protocol IProductService {
+    var removeAdsId: String { get }
     func purchasesInit()
     func buyAddsOff(completion: @escaping PurchaseProductCompletion)
     func restorePurchases(completion: @escaping (PurchaseProductResult) -> Void)
@@ -16,6 +17,9 @@ protocol IProductService {
 class ProductService: IProductService {
     
     private let purchases: Purchases
+    var removeAdsId: String  {
+        return Products.removeAdds.id
+    }
     
     init(purchases: Purchases) {
         self.purchases = purchases

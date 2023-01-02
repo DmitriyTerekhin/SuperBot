@@ -5,12 +5,14 @@
 
 import UIKit
 import IronSource
+import ApphudSDK
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, ISInitializationDelegate {
     
     enum Constants {
         static let IronAppKey = "18013d3ed"
+        static let appHub = "app_j3hnXZuw2cSdFEacg8h4nkBqBQ7SV4"
     }
 
     var window: UIWindow?
@@ -26,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ISInitializationDelegate 
     }
 
     private func setupFrameworks() {
+        Apphud.start(apiKey: Constants.appHub)
         IronSource.initWithAppKey(Constants.IronAppKey, delegate: self)
     }
     

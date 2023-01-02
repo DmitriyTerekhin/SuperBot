@@ -1,6 +1,7 @@
 PODS:
   - ActiveLabel (1.1.0)
   - Alamofire (5.6.4)
+  - ApphudSDK (2.8.8)
   - FSCalendar (2.8.4)
   - InputMask (6.1.0)
   - IQKeyboardManagerSwift (6.5.10)
@@ -26,6 +27,7 @@ PODS:
 DEPENDENCIES:
   - ActiveLabel
   - Alamofire
+  - ApphudSDK
   - FSCalendar
   - InputMask
   - IQKeyboardManagerSwift (>= 6.5.0)
@@ -45,6 +47,7 @@ SPEC REPOS:
   trunk:
     - ActiveLabel
     - Alamofire
+    - ApphudSDK
     - FSCalendar
     - InputMask
     - IQKeyboardManagerSwift
@@ -63,6 +66,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
   Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  ApphudSDK: ef62166ff111404f1fa01a4cd4552d266b778565
   FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   InputMask: 71d291dc54d2deaeac6512afb6ec2304228c0bb7
   IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
@@ -78,6 +82,6 @@ SPEC CHECKSUMS:
   YandexMapsMobile: 549f83d16cb7d1ea73031163722852f408b85841
   YandexMobileMetrica: f5f9c605eaaba33ff6ab2b6bc3259035ca60ed87
 
-PODFILE CHECKSUM: 767a8f32993db6eee15fb7535316b673d704b23f
+PODFILE CHECKSUM: 56d55774edc382d744b874dbda61fd2bc1b4663b
 
 COCOAPODS: 1.11.3
