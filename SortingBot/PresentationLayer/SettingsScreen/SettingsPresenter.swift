@@ -64,11 +64,10 @@ class SettingsPresenter: ISettingsPresenter {
             SettingType.restorePurchases,
             SettingType.deleteAccount
         ]
-        let message =
-        " Is nonRenewingActive active = \(Apphud.isNonRenewingPurchaseActive(productIdentifier: purchasesService.removeAdsId)) \n Has premium access = \(Apphud.hasPremiumAccess())"
-        view?.showMessage(text: message)
         
-        if !Apphud.isNonRenewingPurchaseActive(productIdentifier: purchasesService.removeAdsId) {
+        if !Apphud.isNonRenewingPurchaseActive(productIdentifier: purchasesService.removeAdsId)
+            || !userInfoService.isPremiumActive()
+        {
             source.insert(SettingType.buyPremium, at: 0)
         }
         return source
@@ -94,7 +93,6 @@ class SettingsPresenter: ISettingsPresenter {
     func buyRemoveAdd() {
         view?.showLoader()
         if let product = product {
-            self.view?.showMessage(text: "Found Product")
             Apphud.purchase(product) { [weak self] result in
                 self?.checkPurchases(result)
             }
@@ -107,7 +105,7 @@ class SettingsPresenter: ISettingsPresenter {
     }
     
     private func checkPurchases(_ result: ApphudPurchaseResult) {
-        if result.success {userInfoService.savePremium()}
+        if result.success { userInfoService.savePremium() }
         validateCheck(completion: { [weak self] _ in
             self?.view?.hideLoader()
             self?.view?.updateTable()
@@ -148,8 +146,14 @@ class SettingsPresenter: ISettingsPresenter {
     }
     
     private func restorePurchases() {
-        Apphud.restorePurchases { [weak self] _, _, _
+        Apphud.restorePurchases { [weak self] subsciprions, nonRewenings, error
             in
+            guard
+                error == nil,
+                let nonRewenings = nonRewenings,
+                !nonRewenings.isEmpty
+            else { return }
+            self?.userInfoService.savePremium()
             self?.view?.updateTable()
         }
     }
