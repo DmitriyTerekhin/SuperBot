@@ -20,6 +20,7 @@ protocol ISettingsView: AnyObject {
     func showLoader()
     func hideLoader()
     func routeToEnterScreen()
+    func updateTable()
 }
 
 class SettingsPresenter: ISettingsPresenter {
@@ -28,6 +29,7 @@ class SettingsPresenter: ISettingsPresenter {
     private let networkService: INetworkService
     private let userInfoService: ISensentiveInfoService
     private let purchasesService: IProductService
+    private var product: ApphudProduct?
     
     init(
         networkService: INetworkService,
@@ -41,6 +43,17 @@ class SettingsPresenter: ISettingsPresenter {
     
     func attachView(view: ISettingsView) {
         self.view = view
+        loadproducts()
+    }
+    
+    private func loadproducts() {
+        Apphud.paywallsDidLoadCallback { [weak self] paywalls in
+            guard let strongSelf = self else { return }
+            let message = "paywalls = \(paywalls.count)\n products:\(paywalls.first!.products.first!.productId)"
+            paywalls.forEach { wall in
+                strongSelf.product = wall.products.first(where: {$0.productId == strongSelf.purchasesService.removeAdsId})
+            }
+        }
     }
     
     func getDataSource() -> [SettingType] {
@@ -51,6 +64,10 @@ class SettingsPresenter: ISettingsPresenter {
             SettingType.restorePurchases,
             SettingType.deleteAccount
         ]
+        let message =
+        " Is nonRenewingActive active = \(Apphud.isNonRenewingPurchaseActive(productIdentifier: purchasesService.removeAdsId)) \n Has premium access = \(Apphud.hasPremiumAccess())"
+        view?.showMessage(text: message)
+        
         if !Apphud.isNonRenewingPurchaseActive(productIdentifier: purchasesService.removeAdsId) {
             source.insert(SettingType.buyPremium, at: 0)
         }
@@ -70,18 +87,31 @@ class SettingsPresenter: ISettingsPresenter {
         case .restorePurchases:
             restorePurchases()
         case .deleteAccount:
-            goToEnterScreen()
+            deleteAccount()
         }
     }
     
     func buyRemoveAdd() {
         view?.showLoader()
-        Apphud.purchase(purchasesService.removeAdsId) { [weak self] _
-            in
-            self?.validateCheck(completion: { _ in
-                self?.view?.hideLoader()
-            })
+        if let product = product {
+            self.view?.showMessage(text: "Found Product")
+            Apphud.purchase(product) { [weak self] result in
+                self?.checkPurchases(result)
+            }
+        } else {
+            Apphud.purchase(purchasesService.removeAdsId) { [weak self] result
+                in
+                self?.checkPurchases(result)
+            }
         }
+    }
+    
+    private func checkPurchases(_ result: ApphudPurchaseResult) {
+        if result.success {userInfoService.savePremium()}
+        validateCheck(completion: { [weak self] _ in
+            self?.view?.hideLoader()
+            self?.view?.updateTable()
+        })
     }
     
     private func validateCheck(completion: @escaping (Bool) -> Void) {
@@ -118,7 +148,10 @@ class SettingsPresenter: ISettingsPresenter {
     }
     
     private func restorePurchases() {
-        Apphud.restorePurchases { _, _, _ in }
+        Apphud.restorePurchases { [weak self] _, _, _
+            in
+            self?.view?.updateTable()
+        }
     }
     
     private func revokeAppleToken() {
@@ -130,5 +163,13 @@ class SettingsPresenter: ISettingsPresenter {
         userInfoService.deleteAllInfo { _ in
             self.view?.routeToEnterScreen()
         }
+    }
+}
+
+extension ApphudPurchaseResult {
+    var success: Bool {
+        subscription?.isActive() ?? false ||
+        nonRenewingPurchase?.isActive() ?? false ||
+        (Apphud.isSandbox() && transaction?.transactionState == .purchased)
     }
 }

@@ -26,6 +26,8 @@ class SettingsView: UIView {
         return tbl
     }()
     
+    var tableHeightAnchor = NSLayoutConstraint()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -48,10 +50,11 @@ class SettingsView: UIView {
         NSLayoutConstraint.activate([
             tableView.centerXAnchor.constraint(equalTo: tableView.superview!.centerXAnchor, constant: 0),
             tableView.centerYAnchor.constraint(equalTo: tableView.superview!.centerYAnchor, constant: 0),
-            tableView.heightAnchor.constraint(equalToConstant: 250),
             tableView.rightAnchor.constraint(equalTo: tableView.superview!.rightAnchor),
             tableView.leftAnchor.constraint(equalTo: tableView.superview!.leftAnchor)
         ])
+        tableHeightAnchor = tableView.heightAnchor.constraint(equalToConstant: 400)
+        tableHeightAnchor.isActive = true
         tableView.translatesAutoresizingMaskIntoConstraints = false
     }
 

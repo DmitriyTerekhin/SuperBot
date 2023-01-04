@@ -39,11 +39,12 @@ class SettingsViewController: UIViewController {
     private func setupView() {
         navigationController?.setNavigationBarHidden(true, animated: false)
         settingsDataSource = presenter.getDataSource()
+        contentView.tableHeightAnchor.constant = CGFloat(settingsDataSource.count) * contentView.tableView.rowHeight
         contentView.tableView.delegate = self
         contentView.tableView.dataSource = self
     }
 }
-
+// MARK: - View
 extension SettingsViewController: ISettingsView {
     func routeToEnterScreen() {
         if #available(iOS 13.0, *) {
@@ -69,6 +70,12 @@ extension SettingsViewController: ISettingsView {
     
     func showMessage(text: String) {
         displayMsg(title: nil, msg: text)
+    }
+    
+    func updateTable() {
+        settingsDataSource = presenter.getDataSource()
+        contentView.tableHeightAnchor.constant = CGFloat(settingsDataSource.count) * contentView.tableView.rowHeight
+        contentView.tableView.reloadData()
     }
 }
 
