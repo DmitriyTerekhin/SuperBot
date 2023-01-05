@@ -15,6 +15,7 @@ PODS:
   - ScreenType (1.1.0)
   - SwiftSoup (2.4.3)
   - SwiftyJSON (5.0.1)
+  - SwiftyReceiptValidator (6.5.0)
   - SwiftyUserDefaults (5.3.0)
   - YandexMapsMobile (4.1.0-lite)
   - YandexMobileMetrica/Dynamic (4.2.0):
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - ScreenType
   - SwiftSoup
   - SwiftyJSON
+  - SwiftyReceiptValidator
   - SwiftyUserDefaults
   - YandexMapsMobile (= 4.1.0-lite)
   - YandexMobileMetrica/Dynamic (= 4.2.0)
@@ -59,6 +61,7 @@ SPEC REPOS:
     - ScreenType
     - SwiftSoup
     - SwiftyJSON
+    - SwiftyReceiptValidator
     - SwiftyUserDefaults
     - YandexMapsMobile
     - YandexMobileMetrica
@@ -78,10 +81,11 @@ SPEC CHECKSUMS:
   ScreenType: aa607eaa564b5e533876a4df92a5b9de1a8dc579
   SwiftSoup: 3384f2e618cfc1b3cbc7852c16692fe8de13fb8f
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  SwiftyReceiptValidator: 977aa9c8d8f971d4d4199e723f39c52bcd870458
   SwiftyUserDefaults: 63f80248cf5bfb3458825d9a78f2eb7e1293a040
   YandexMapsMobile: 549f83d16cb7d1ea73031163722852f408b85841
   YandexMobileMetrica: f5f9c605eaaba33ff6ab2b6bc3259035ca60ed87
 
-PODFILE CHECKSUM: 56d55774edc382d744b874dbda61fd2bc1b4663b
+PODFILE CHECKSUM: c905629cc711d8ab26ebe8a54d0d981a45c12129
 
 COCOAPODS: 1.11.3

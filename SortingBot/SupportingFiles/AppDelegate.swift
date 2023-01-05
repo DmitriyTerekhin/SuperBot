@@ -5,7 +5,6 @@
 
 import UIKit
 import IronSource
-import ApphudSDK
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, ISInitializationDelegate {
@@ -28,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ISInitializationDelegate 
     }
 
     private func setupFrameworks() {
-        Apphud.start(apiKey: Constants.appHub)
         IronSource.initWithAppKey(Constants.IronAppKey, delegate: self)
     }
     

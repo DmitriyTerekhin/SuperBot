@@ -23,6 +23,7 @@ target 'SortingBot' do
   pod 'FSCalendar'
   pod 'IronSourceSDK','7.2.6.0'
   pod 'ApphudSDK'
+  pod 'SwiftyReceiptValidator'
 
   target 'SortingBotTests' do
     inherit! :search_paths

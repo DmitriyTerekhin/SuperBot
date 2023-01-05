@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import ApphudSDK
 
 protocol ISettingsPresenter: AnyObject {
     func attachView(view: ISettingsView)
@@ -29,7 +28,6 @@ class SettingsPresenter: ISettingsPresenter {
     private let networkService: INetworkService
     private let userInfoService: ISensentiveInfoService
     private let purchasesService: IProductService
-    private var product: ApphudProduct?
     
     init(
         networkService: INetworkService,
@@ -43,17 +41,6 @@ class SettingsPresenter: ISettingsPresenter {
     
     func attachView(view: ISettingsView) {
         self.view = view
-        loadproducts()
-    }
-    
-    private func loadproducts() {
-        Apphud.paywallsDidLoadCallback { [weak self] paywalls in
-            guard let strongSelf = self else { return }
-            let message = "paywalls = \(paywalls.count)\n products:\(paywalls.first!.products.first!.productId)"
-            paywalls.forEach { wall in
-                strongSelf.product = wall.products.first(where: {$0.productId == strongSelf.purchasesService.removeAdsId})
-            }
-        }
     }
     
     func getDataSource() -> [SettingType] {
@@ -65,9 +52,7 @@ class SettingsPresenter: ISettingsPresenter {
             SettingType.deleteAccount
         ]
         
-        if !Apphud.isNonRenewingPurchaseActive(productIdentifier: purchasesService.removeAdsId)
-            || !userInfoService.isPremiumActive()
-        {
+        if !userInfoService.isPremiumActive() {
             source.insert(SettingType.buyPremium, at: 0)
         }
         return source
@@ -92,40 +77,17 @@ class SettingsPresenter: ISettingsPresenter {
     
     func buyRemoveAdd() {
         view?.showLoader()
-        if let product = product {
-            Apphud.purchase(product) { [weak self] result in
-                self?.checkPurchases(result)
+        purchasesService.buyAddsOff { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(_):
+                    self?.userInfoService.savePremium()
+                    self?.view?.hideLoader()
+                    self?.view?.updateTable()
+                case .failure(let error):
+                    self?.view?.showMessage(text: error.localizedDescription)
+                }
             }
-        } else {
-            Apphud.purchase(purchasesService.removeAdsId) { [weak self] result
-                in
-                self?.checkPurchases(result)
-            }
-        }
-    }
-    
-    private func checkPurchases(_ result: ApphudPurchaseResult) {
-        if result.success { userInfoService.savePremium() }
-        validateCheck(completion: { [weak self] _ in
-            self?.view?.hideLoader()
-            self?.view?.updateTable()
-        })
-    }
-    
-    private func validateCheck(completion: @escaping (Bool) -> Void) {
-        Apphud.validateReceipt { [weak self] subscriptions, nonRenewinPurchases, error in
-            guard let strongSelf = self else { return }
-            if let removeAdds = subscriptions?.first(where: {$0.productId == strongSelf.purchasesService.removeAdsId}),
-               removeAdds.isActive()
-            {
-                completion(true)
-            }
-            if let removeAdds = nonRenewinPurchases?.first(where: {$0.productId == strongSelf.purchasesService.removeAdsId}),
-               removeAdds.isActive()
-            {
-                completion(true)
-            }
-            completion(false)
         }
     }
     
@@ -135,7 +97,6 @@ class SettingsPresenter: ISettingsPresenter {
                 guard let strongSelf = self else { return }
                 switch result {
                 case .success(_):
-                    Apphud.logout()
                     strongSelf.revokeAppleToken()
                     strongSelf.goToEnterScreen()
                 case .failure(_):
@@ -146,15 +107,15 @@ class SettingsPresenter: ISettingsPresenter {
     }
     
     private func restorePurchases() {
-        Apphud.restorePurchases { [weak self] subsciprions, nonRewenings, error
-            in
-            guard
-                error == nil,
-                let nonRewenings = nonRewenings,
-                !nonRewenings.isEmpty
-            else { return }
-            self?.userInfoService.savePremium()
-            self?.view?.updateTable()
+        purchasesService.restorePurchases { [weak self] result in
+            switch result {
+            case .success(_):
+                self?.userInfoService.savePremium()
+                self?.view?.hideLoader()
+                self?.view?.updateTable()
+            case .failure(let error):
+                self?.view?.showMessage(text: error.localizedDescription)
+            }
         }
     }
     
@@ -167,13 +128,5 @@ class SettingsPresenter: ISettingsPresenter {
         userInfoService.deleteAllInfo { _ in
             self.view?.routeToEnterScreen()
         }
-    }
-}
-
-extension ApphudPurchaseResult {
-    var success: Bool {
-        subscription?.isActive() ?? false ||
-        nonRenewingPurchase?.isActive() ?? false ||
-        (Apphud.isSandbox() && transaction?.transactionState == .purchased)
     }
 }

@@ -87,7 +87,7 @@ class CreateActivityPresenter: ICreateActivityPresenter {
     }
     
     func isPremiumActive() -> Bool {
-        return Apphud.isNonRenewingPurchaseActive(productIdentifier: productService.removeAdsId) || userInfoService.isPremiumActive()
+        return userInfoService.isPremiumActive()
     }
     
     func saveActivity() {

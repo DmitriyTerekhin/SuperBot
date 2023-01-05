@@ -7,6 +7,7 @@
 
 import Foundation
 import StoreKit
+import SwiftyReceiptValidator
 
 typealias RequestProductsResult = Result<[SKProduct], Error>
 typealias PurchaseProductResult = Result<Bool, Error>
@@ -18,6 +19,9 @@ class Purchases: NSObject {
     static let `default` = Purchases()
 
     private let productIdentifiers = Set<String>(arrayLiteral: "Remove_adds")
+    private let receiptValidator = SwiftyReceiptValidator(configuration: .standard,
+                                                          isLoggingEnabled: false)
+    private let sharedSecret = "b72d47cb0f14445e9845730efbec15a2"
 
     private var products: [String: SKProduct]?
     private var productRequest: SKProductsRequest?
@@ -110,9 +114,23 @@ extension Purchases: SKPaymentTransactionObserver {
         for transaction in transactions {
             switch transaction.transactionState {
             case .purchased, .restored:
+                let productId = transaction.payment.productIdentifier
+                let validationRequest = SRVPurchaseValidationRequest(
+                    productId: productId,
+                    sharedSecret: sharedSecret
+                )
                 if finishTransaction(transaction) {
-                    SKPaymentQueue.default().finishTransaction(transaction)
-                    productPurchaseCallback?(.success(true))
+                    receiptValidator.validate(validationRequest) { result in
+                        switch result {
+                        case .success(let response):
+                            print("Receipt validation was successfull with receipt response \(response)")
+                            SKPaymentQueue.default().finishTransaction(transaction)
+                            self.productPurchaseCallback?(.success(true))
+                        case .failure(let error):
+                            print("Receipt validation failed with error \(error.localizedDescription)")
+                            self.productPurchaseCallback?(.failure(PurchasesError.unknown))
+                        }
+                    }
                 } else {
                     productPurchaseCallback?(.failure(PurchasesError.unknown))
                 }
