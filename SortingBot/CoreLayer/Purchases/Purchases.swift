@@ -130,11 +130,12 @@ extension Purchases: SKPaymentTransactionObserver {
                             print("Receipt validation failed with error \(error.localizedDescription)")
                             self.productPurchaseCallback?(.failure(PurchasesError.unknown))
                         }
+                        self.productPurchaseCallback = nil
                     }
                 } else {
                     productPurchaseCallback?(.failure(PurchasesError.unknown))
+                    productPurchaseCallback = nil
                 }
-                productPurchaseCallback = nil
             case .failed:
                 productPurchaseCallback?(.failure(transaction.error ?? PurchasesError.unknown))
                 SKPaymentQueue.default().finishTransaction(transaction)
