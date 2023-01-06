@@ -82,11 +82,11 @@ class SettingsPresenter: ISettingsPresenter {
                 switch result {
                 case .success(_):
                     self?.userInfoService.savePremium()
-                    self?.view?.hideLoader()
-                    self?.view?.updateTable()
                 case .failure(let error):
                     self?.view?.showMessage(text: error.localizedDescription)
                 }
+                self?.view?.hideLoader()
+                self?.view?.updateTable()
             }
         }
     }
@@ -108,13 +108,15 @@ class SettingsPresenter: ISettingsPresenter {
     
     private func restorePurchases() {
         purchasesService.restorePurchases { [weak self] result in
-            switch result {
-            case .success(_):
-                self?.userInfoService.savePremium()
+            DispatchQueue.main.async {
+                switch result {
+                case .success(_):
+                    self?.userInfoService.savePremium()
+                case .failure(let error):
+                    self?.view?.showMessage(text: error.localizedDescription)
+                }
                 self?.view?.hideLoader()
                 self?.view?.updateTable()
-            case .failure(let error):
-                self?.view?.showMessage(text: error.localizedDescription)
             }
         }
     }
