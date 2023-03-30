@@ -45,11 +45,11 @@ class CheckBoxButtonView: UIView {
     }
     
     func addText(text: NSString, wordsInText: String, siteToGo: String) {
-        textView.font = UIFont(font: .robotoRegular, size: 10)
+        textView.font = UIFont(font: .KanitRegular, size: 10)
         let attributedString = textView.addHyperLinksToText(originalText: text as String,
                                                             hyperLinks: [ wordsInText: siteToGo],
                                                             textColor: UIColor.white,
-                                                            font: UIFont(font: .robotoRegular, size: 10))
+                                                            font: UIFont(font: .KanitRegular, size: 10))
         let linkAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: UIColor.white]
         textView.linkTextAttributes = linkAttributes
         textView.isUserInteractionEnabled = true

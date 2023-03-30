@@ -17,7 +17,7 @@ class WebViewViewController: UIViewController {
     
     private let bottomView: UIView = {
         let view = UIView()
-        view.backgroundColor = .AppCollors.backgroundBlue
+        view.backgroundColor = .AppCollors.backgroundBlack
         return view
     }()
     private let loaderBackgroundView: UIView = {
@@ -35,7 +35,7 @@ class WebViewViewController: UIViewController {
                                                       width: CGFloat(40).dp,
                                                       height: CGFloat(40).dp),
                                         type: NVActivityIndicatorType.circleStrokeSpin)
-        v.color = UIColor.AppCollors.backgroundBlue
+        v.color = UIColor.AppCollors.backgroundBlack
         v.layer.zPosition = 100
         return v
     }()
@@ -71,7 +71,7 @@ class WebViewViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .white
-        navigationController?.navigationBar.barTintColor = UIColor.AppCollors.backgroundBlue
+        navigationController?.navigationBar.barTintColor = UIColor.AppCollors.backgroundBlack
         webView.navigationDelegate = self
         view.addSubview(webView)
         view.addSubview(bottomView)
@@ -91,7 +91,7 @@ class WebViewViewController: UIViewController {
             button.setImage(UIImage(named: "ArrowLeft")?.withRenderingMode(.alwaysOriginal), for: .normal)
             button.setTitle("Back", for: .normal)
             button.sizeToFit()
-            button.tintColor = .AppCollors.backgroundBlue
+            button.tintColor = .AppCollors.backgroundBlack
             navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
             button.addTarget(self, action: #selector(goBack), for: .touchUpInside)
         } else {

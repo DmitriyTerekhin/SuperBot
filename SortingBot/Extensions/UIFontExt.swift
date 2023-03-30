@@ -20,6 +20,8 @@ extension UIFont {
         case robotoThin = "Roboto-Thin"
         case robotoBold = "Roboto-Bold"
         case RobotoMedium = "Roboto-Medium"
+        case KanitRegular = "Kanit-Regular"
+        case KanitBold = "Kanit-Bold"
     }
     
     func printAllFonts() {

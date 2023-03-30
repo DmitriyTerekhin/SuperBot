@@ -26,7 +26,7 @@ final class CustomItemView: UIView {
     private let containerView = UIView()
     private let titleLabel: UILabel = {
         let lbl = UILabel()
-        lbl.setFont(fontName: .robotoRegular, sizeXS: 12)
+        lbl.setFont(fontName: .KanitRegular, sizeXS: 12)
         return lbl
     }()
     private let item: CustomTabItem

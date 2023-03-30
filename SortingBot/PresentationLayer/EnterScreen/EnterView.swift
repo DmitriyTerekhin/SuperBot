@@ -36,7 +36,7 @@ class EnterView: UIView {
         let lbl = UILabel()
         lbl.numberOfLines = 0
         lbl.textAlignment = .center
-        lbl.setFont(fontName: .robotoRegular, sizeXS: 14)
+        lbl.setFont(fontName: .KanitRegular, sizeXS: 14)
         lbl.textColor = .white
         lbl.text = Constants.title
         return lbl
@@ -47,15 +47,15 @@ class EnterView: UIView {
         btn.setTitle(Constants.appleSignIn, for: .normal)
         btn.setImage(UIImage(named: "AppleIcon")?.withRenderingMode(.alwaysTemplate), for: .normal)
         btn.tintColor = .white
-        btn.titleLabel!.setFont(fontName: .robotoBold, sizeXS: 20)
+        btn.titleLabel!.setFont(fontName: .KanitBold, sizeXS: 20)
         if #available(iOS 15, *) {
             var config = UIButton.Configuration.plain()
             config.imagePadding = 10
             config.background.backgroundColor = UIColor.AppCollors.red
-            config.background.cornerRadius = Constants.signInButtonSize.height/2
+            config.background.cornerRadius = 10
             config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
                 var outgoing = incoming
-                outgoing.font = UIFont(font: .robotoBold, size: 20)
+                outgoing.font = UIFont(font: .KanitBold, size: 20)
                 return outgoing
             }
             btn.configuration = config
@@ -64,7 +64,7 @@ class EnterView: UIView {
             btn.imageEdgeInsets.bottom = 3
             btn.backgroundColor = .AppCollors.red
         }
-        btn.layer.cornerRadius = Constants.signInButtonSize.height/2
+        btn.layer.cornerRadius = 10
         btn.setTitleColor(.white, for: .normal)
         return btn
     }()
@@ -88,7 +88,7 @@ class EnterView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = .AppCollors.backgroundBlue
+        backgroundColor = .AppCollors.backgroundBlack
         
         let leftRightDistance = adapted(dimensionSize: 52, to: .height)
         
@@ -124,14 +124,14 @@ class EnterView: UIView {
     
     func prepareAttributesForTextView() {
         let text = (termsAndPolicyTextView.text ?? "") as NSString
-        termsAndPolicyTextView.font = UIFont(font: .robotoRegular, size: 12)
+        termsAndPolicyTextView.font = UIFont(font: .KanitRegular, size: 12)
         let attributedString = termsAndPolicyTextView.addHyperLinksToText(
             originalText: text as String,
             hyperLinks: [
                 Constants.privacy: "\(ApiConstants.URL.mainURL)/privacy.html",
                 Constants.terms: "\(ApiConstants.URL.mainURL)/terms.html"
             ],
-            font:  UIFont(font: .robotoRegular, size: 12)
+            font:  UIFont(font: .KanitRegular, size: 12)
         )
         let linkAttributes: [NSAttributedString.Key : Any] = [
             NSAttributedString.Key.foregroundColor: UIColor.white,

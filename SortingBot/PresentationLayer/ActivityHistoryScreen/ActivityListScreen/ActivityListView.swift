@@ -43,7 +43,7 @@ class ActivityListView: UIView {
         
         backButton.addTarget(nil, action: #selector(ActivityListViewController.backButtonTapped), for: .touchUpInside)
         
-        backgroundColor = .AppCollors.backgroundBlue
+        backgroundColor = .AppCollors.backgroundBlack
         addSubview(tableView)
         addSubview(backButton)
         addSubview(logoImageView)

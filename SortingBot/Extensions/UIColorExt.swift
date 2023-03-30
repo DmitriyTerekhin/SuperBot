@@ -57,7 +57,7 @@ extension UIColor {
     }
     
     enum AppCollors {
-        static let red = UIColor(netHex: 0xEA1D25)
-        static let backgroundBlue = UIColor(netHex: 0x0988D1)
+        static let red = UIColor(netHex: 0xF30000)
+        static let backgroundBlack = UIColor.black
     }
 }

@@ -31,7 +31,7 @@ class ActivityHistoryView: UIView {
                                        left: Constants.cellInset,
                                        bottom: Constants.cellInset,
                                        right: Constants.cellInset)
-        cv.backgroundColor = UIColor.white.withAlphaComponent(0.2)
+        cv.backgroundColor = UIColor(netHex: 0x818181)
         cv.layer.cornerRadius = 10
         cv.register(HistoryCollectionViewCell.self, forCellWithReuseIdentifier: HistoryCollectionViewCell.reuseID)
         return cv
@@ -83,7 +83,7 @@ class ActivityHistoryView: UIView {
     
     let titleLabel: UILabel = {
         let lbl = UILabel()
-        lbl.setFont(fontName: .robotoRegular, sizeXS: 14)
+        lbl.setFont(fontName: .KanitRegular, sizeXS: 14)
         lbl.textColor = .white
         lbl.numberOfLines = 0
         lbl.text = Constants.title
@@ -93,7 +93,7 @@ class ActivityHistoryView: UIView {
     
     let equipmentsImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "HistoryEquipment")
+        iv.image = UIImage(named: "SpacemanHistory")
         return iv
     }()
 
@@ -107,7 +107,7 @@ class ActivityHistoryView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = .AppCollors.backgroundBlue
+        backgroundColor = .AppCollors.backgroundBlack
         
         addSubview(logoImageView)
         addSubview(titleLabel)
@@ -146,21 +146,25 @@ class ActivityHistoryView: UIView {
         ])
         urgentArrowsImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        let adaptedTopHeight = adapted(dimensionSize: 51, to: .height)
+        let sizeLogo = resized(size: CGSize(width: 67, height: 86), basedOn: .height)
         NSLayoutConstraint.activate([
             logoImageView.centerXAnchor.constraint(equalTo: logoImageView.superview!.centerXAnchor),
-            logoImageView.topAnchor.constraint(equalTo: logoImageView.superview!.safeTopAnchor, constant: adaptedTopHeight),
+            logoImageView.topAnchor.constraint(equalTo: logoImageView.superview!.safeTopAnchor,
+                                               constant: 46),
+            logoImageView.widthAnchor.constraint(equalToConstant: sizeLogo.width),
+            logoImageView.heightAnchor.constraint(equalToConstant: sizeLogo.height)
         ])
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         
         let topDistance = adapted(dimensionSize: 70, to: .height)
-        let equipmentSize = resized(size: CGSize(width: 271, height: 271), basedOn: .width)
+        let equipmentSize = resized(size: CGSize(width: 163, height: 257), basedOn: .height)
         equipmentsImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             equipmentsImageView.centerXAnchor.constraint(equalTo: equipmentsImageView.superview!.centerXAnchor),
-            equipmentsImageView.centerYAnchor.constraint(equalTo: equipmentsImageView.superview!.centerYAnchor, constant: -topDistance),
-            equipmentsImageView.widthAnchor.constraint(equalToConstant: equipmentSize.height),
-            equipmentsImageView.heightAnchor.constraint(equalToConstant: equipmentSize.height)
+            equipmentsImageView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 57)
+//            equipmentsImageView.centerYAnchor.constraint(equalTo: equipmentsImageView.superview!.centerYAnchor, constant: -topDistance),
+//            equipmentsImageView.widthAnchor.constraint(equalToConstant: equipmentSize.height),
+//            equipmentsImageView.heightAnchor.constraint(equalToConstant: equipmentSize.height)
         ])
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

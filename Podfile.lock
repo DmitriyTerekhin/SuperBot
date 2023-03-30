@@ -32,7 +32,7 @@ DEPENDENCIES:
   - FSCalendar
   - InputMask
   - IQKeyboardManagerSwift (>= 6.5.0)
-  - IronSourceSDK (= 7.2.6.0)
+  - IronSourceSDK
   - KeychainAccess
   - KeychainSwift (~> 19.0)
   - Kingfisher (~> 4.0)
@@ -86,6 +86,6 @@ SPEC CHECKSUMS:
   YandexMapsMobile: 549f83d16cb7d1ea73031163722852f408b85841
   YandexMobileMetrica: f5f9c605eaaba33ff6ab2b6bc3259035ca60ed87
 
-PODFILE CHECKSUM: c905629cc711d8ab26ebe8a54d0d981a45c12129
+PODFILE CHECKSUM: ed85d2be6c3a2ec50d6ca8ae401d757844897bcd
 
 COCOAPODS: 1.11.3

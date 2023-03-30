@@ -11,7 +11,7 @@ class NumberCollectionViewCell: UICollectionViewCell, ReusableView {
     
     let titleLabel: UILabel = {
         let lbl = UILabel()
-        lbl.setFont(fontName: .robotoBold, sizeXS: 14)
+        lbl.setFont(fontName: .KanitBold, sizeXS: 14)
         lbl.textColor = UIColor.white.withAlphaComponent(0.5)
         return lbl
     }()

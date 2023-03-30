@@ -13,7 +13,7 @@ class SettingsTableViewCell: UITableViewCell, ReusableView {
         let lbl = UILabel()
         lbl.textColor = .white
         lbl.textAlignment = .center
-        lbl.setFont(fontName: .robotoRegular, sizeXS: 20)
+        lbl.setFont(fontName: .KanitRegular, sizeXS: 20)
         return lbl
     }()
     

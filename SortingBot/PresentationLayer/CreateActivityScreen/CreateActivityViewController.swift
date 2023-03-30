@@ -7,6 +7,7 @@
 
 import UIKit
 import IronSource
+import AdSupport
 
 class CreateActivityViewController: UIViewController {
     
@@ -93,6 +94,7 @@ class CreateActivityViewController: UIViewController {
             viewState = .start
         case .addingPoints:
             viewState = .creatingActivity
+            contentView.enableMainButton(forceDisable: !presenter.nameAndPhotoWasInserted)
         case .finalResult:
             viewState = .addingPoints
         }

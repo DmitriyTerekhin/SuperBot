@@ -23,7 +23,7 @@ class LoaderViewController: UIViewController {
         lbl.numberOfLines = 2
         lbl.textAlignment = .center
         lbl.alpha = 0
-        lbl.setFont(fontName: .RobotoMedium, sizeXS: 30)
+        lbl.setFont(fontName: .KanitBold, sizeXS: 30)
         return lbl
     }()
     

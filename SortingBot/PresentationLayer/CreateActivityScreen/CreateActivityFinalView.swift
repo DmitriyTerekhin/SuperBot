@@ -20,7 +20,7 @@ class CreateActivityFinalView: UIView {
         lbl.textColor = .white
         lbl.numberOfLines = 0
         lbl.textAlignment = .center
-        lbl.setFont(fontName: .robotoBold, sizeXS: 16)
+        lbl.setFont(fontName: .KanitBold, sizeXS: 16)
         lbl.text = "Visit match of Liverpool and ManUnited"
         return lbl
     }()
@@ -51,13 +51,16 @@ class CreateActivityFinalView: UIView {
         addSubview(pointImageView)
         addSubview(nameLabel)
         
-        activityImageView.layer.cornerRadius = Constants.imageSize.height/2
+        activityImageView.layer.cornerRadius = 10
         activityImageView.translatesAutoresizingMaskIntoConstraints = false
         activityImageView.widthAnchor.constraint(equalToConstant: Constants.imageSize.height).isActive = true
         activityImageView.heightAnchor.constraint(equalToConstant: Constants.imageSize.height).isActive = true
         activityImageView.centerXAnchor.constraint(equalTo: activityImageView.superview!.centerXAnchor).isActive = true
         activityImageView.topAnchor.constraint(equalTo: activityImageView.superview!.topAnchor, constant: 10).isActive = true
         
+        let size = resized(size: CGSize(width: 271, height: 157), basedOn: .height)
+        pointImageView.widthAnchor.constraint(equalToConstant: size.width).isActive = true
+        pointImageView.heightAnchor.constraint(equalToConstant: size.height).isActive = true
         pointImageView.centerXAnchor.constraint(equalTo: activityImageView.rightAnchor,
                                                 constant: -Constants.imageSize.height/7).isActive = true
         pointImageView.centerYAnchor.constraint(equalTo: activityImageView.topAnchor,

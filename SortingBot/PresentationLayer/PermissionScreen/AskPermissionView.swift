@@ -20,7 +20,7 @@ class AskPermissionView: UIView {
         let lbl = UILabel()
         lbl.text = "We'd like to send you updates and alerts through push notifications.\n\nThis will allow us to keep you informed about important news and events, as well as special offers and promotions."
         lbl.numberOfLines = 0
-        lbl.setFont(fontName: .robotoRegular, sizeXS: 14)
+        lbl.setFont(fontName: .KanitRegular, sizeXS: 14)
         lbl.textColor = .white
         lbl.textAlignment = .center
         return lbl
@@ -37,16 +37,16 @@ class AskPermissionView: UIView {
         btn.setTitle(Constants.allow, for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.backgroundColor = .AppCollors.red
-        btn.layer.cornerRadius = Constants.allowButtonHeight/2
-        btn.titleLabel?.setFont(fontName: .robotoBold, sizeXS: 20)
+        btn.layer.cornerRadius = 10
+        btn.titleLabel?.setFont(fontName: .KanitBold, sizeXS: 20)
         
         if #available(iOS 15, *) {
             var config = UIButton.Configuration.plain()
             config.background.backgroundColor = UIColor.AppCollors.red
-            config.background.cornerRadius = Constants.allowButtonHeight/2
+            config.background.cornerRadius = 10
             config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
                 var outgoing = incoming
-                outgoing.font = UIFont(font: .robotoBold, size: 20)
+                outgoing.font = UIFont(font: .KanitBold, size: 20)
                 return outgoing
             }
             btn.configuration = config
@@ -59,7 +59,7 @@ class AskPermissionView: UIView {
         let btn = UIButton(type: .system)
         btn.setTitle(Constants.skip, for: .normal)
         btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel?.setFont(fontName: .robotoRegular, sizeXS: 12)
+        btn.titleLabel?.setFont(fontName: .KanitRegular, sizeXS: 12)
         btn.addTarget(nil, action: #selector(AskPermissionsViewController.skipTapped), for: .touchUpInside)
         btn.titleLabel?.underline()
         return btn
@@ -75,7 +75,7 @@ class AskPermissionView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = .AppCollors.backgroundBlue
+        backgroundColor = .AppCollors.backgroundBlack
         
         addSubview(logoIamgeView)
         addSubview(titlelabel)

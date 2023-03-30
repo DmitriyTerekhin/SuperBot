@@ -26,8 +26,8 @@ class ActivityListTableViewCell: UITableViewCell, ReusableView {
     
     private let colorView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
-        view.layer.cornerRadius = Constants.whiteBackgroundHeight/2
+        view.backgroundColor = UIColor(netHex: 0x323232)
+        view.layer.cornerRadius = 10
         return view
     }()
     
@@ -40,11 +40,11 @@ class ActivityListTableViewCell: UITableViewCell, ReusableView {
     
     private let titleLabel: UILabel = {
         let lbl = UILabel()
-        lbl.textColor = .AppCollors.backgroundBlue
+        lbl.textColor = .white
         lbl.numberOfLines = 0
         lbl.textAlignment = .left
         lbl.text = "Visit match of Liverpool and ManUnited"
-        lbl.setFont(fontName: .robotoRegular, sizeXS: 10)
+        lbl.setFont(fontName: .KanitRegular, sizeXS: 10)
         return lbl
     }()
     
@@ -77,7 +77,7 @@ class ActivityListTableViewCell: UITableViewCell, ReusableView {
     private func setupView() {
         doneButtonView.addTarget(self, action: #selector(doneTapped), for: .touchUpInside)
         backgroundColor = .clear
-        activityImageView.layer.cornerRadius = Constants.imageSize/2
+        activityImageView.layer.cornerRadius = 10
         
         contentView.addSubview(colorView)
         colorView.addSubview(activityImageView)

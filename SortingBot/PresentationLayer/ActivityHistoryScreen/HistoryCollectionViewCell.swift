@@ -19,6 +19,6 @@ class HistoryCollectionViewCell: UICollectionViewCell, ReusableView {
     }
     
     func prepare(eventExist: Bool) {
-        contentView.backgroundColor = eventExist ? UIColor.AppCollors.red : UIColor.white.withAlphaComponent(0.5)
+        contentView.backgroundColor = eventExist ? UIColor.AppCollors.red : UIColor(netHex: 0x323232)
     }
 }

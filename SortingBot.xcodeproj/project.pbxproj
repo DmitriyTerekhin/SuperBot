@@ -105,6 +105,8 @@
 		9165C71E295CCCCE006DB70C /* ManageObjectTypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9165C71D295CCCCE006DB70C /* ManageObjectTypeExtensions.swift */; };
 		9165C720295CCCEE006DB70C /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9165C71F295CCCEE006DB70C /* DatabaseManager.swift */; };
 		9165C722295CE25C006DB70C /* HistoryNumberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9165C721295CE25C006DB70C /* HistoryNumberCollectionViewCell.swift */; };
+		9177A1DF29D5B78500DF4C8C /* Kanit-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9177A1DE29D5B78500DF4C8C /* Kanit-Regular.ttf */; };
+		9177A1E129D5BA4F00DF4C8C /* Kanit-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9177A1E029D5BA4E00DF4C8C /* Kanit-Bold.ttf */; };
 		9E4059C1F32F0B5B89621D59 /* Pods_SortingBot_SortingBotUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B1D629B79800F03394183C /* Pods_SortingBot_SortingBotUITests.framework */; };
 		C3C2DAF8296493D200BB2C90 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C2DAF7296493D200BB2C90 /* StoreKit.framework */; };
 /* End PBXBuildFile section */
@@ -230,6 +232,8 @@
 		9165C71D295CCCCE006DB70C /* ManageObjectTypeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageObjectTypeExtensions.swift; sourceTree = "<group>"; };
 		9165C71F295CCCEE006DB70C /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		9165C721295CE25C006DB70C /* HistoryNumberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNumberCollectionViewCell.swift; sourceTree = "<group>"; };
+		9177A1DE29D5B78500DF4C8C /* Kanit-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kanit-Regular.ttf"; sourceTree = "<group>"; };
+		9177A1E029D5BA4E00DF4C8C /* Kanit-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kanit-Bold.ttf"; sourceTree = "<group>"; };
 		C229C1E3CDB3DCD7A65DF221 /* Pods-SortingBot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SortingBot.release.xcconfig"; path = "Target Support Files/Pods-SortingBot/Pods-SortingBot.release.xcconfig"; sourceTree = "<group>"; };
 		C33FEA4129641EDA00AFF1A8 /* SortingBotDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SortingBotDebug.entitlements; sourceTree = "<group>"; };
 		C3B1F15F295E15F40097278C /* SortingBotRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SortingBotRelease.entitlements; sourceTree = "<group>"; };
@@ -384,6 +388,8 @@
 		9165C655295A0296006DB70C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				9177A1E029D5BA4E00DF4C8C /* Kanit-Bold.ttf */,
+				9177A1DE29D5B78500DF4C8C /* Kanit-Regular.ttf */,
 				9165C656295A0296006DB70C /* Roboto-Medium.ttf */,
 				9165C657295A0296006DB70C /* Roboto-Regular.ttf */,
 				9165C658295A0296006DB70C /* Roboto-Bold.ttf */,
@@ -731,9 +737,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9177A1E129D5BA4F00DF4C8C /* Kanit-Bold.ttf in Resources */,
 				9165C6272959F74B006DB70C /* LaunchScreen.storyboard in Resources */,
 				9165C6242959F74B006DB70C /* Assets.xcassets in Resources */,
 				9165C65E295A0296006DB70C /* Roboto-Thin.ttf in Resources */,
+				9177A1DF29D5B78500DF4C8C /* Kanit-Regular.ttf in Resources */,
 				9165C65D295A0296006DB70C /* Roboto-Bold.ttf in Resources */,
 				9165C65F295A0296006DB70C /* Roboto-Black.ttf in Resources */,
 				9165C65C295A0296006DB70C /* Roboto-Regular.ttf in Resources */,
@@ -1154,9 +1162,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SortingBot/SortingBotDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = WFBR3KX35Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SortingBot/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1169,10 +1179,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.8;
+				MARKETING_VERSION = 1.0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Walana.SortingBot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = SB_Dist_PP;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1188,7 +1199,7 @@
 				CODE_SIGN_ENTITLEMENTS = SortingBot/SortingBotRelease.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = WFBR3KX35Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SortingBot/SupportingFiles/Info.plist;
@@ -1202,7 +1213,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.8;
+				MARKETING_VERSION = 1.0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Walana.SortingBot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = SB_Dist_PP;

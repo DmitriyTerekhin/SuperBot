@@ -45,13 +45,13 @@ class CreateActivityView: UIView {
     
     private let equipmentsImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "SportEquipments")
+        iv.image = UIImage(named: "CreateActivityStartImage")
         return iv
     }()
     
     private let nameOfActivityTextField: UITextField = {
         let tf = UITextField()
-        tf.layer.cornerRadius = Constants.buttonSize.height/2
+        tf.layer.cornerRadius = 10
         tf.layer.borderWidth = 2
         tf.layer.borderColor = UIColor.white.withAlphaComponent(0.5).cgColor
         tf.tintColor = UIColor.white.withAlphaComponent(0.5)
@@ -63,7 +63,7 @@ class CreateActivityView: UIView {
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.5)]
         )
         tf.textColor = UIColor.white.withAlphaComponent(0.5)
-        tf.font = UIFont(font: .robotoBold, size: 20)
+        tf.font = UIFont(font: .KanitBold, size: 20)
         tf.addTarget(nil, action: #selector(CreateActivityViewController.textFieldValueDidChanged), for: .editingChanged)
         return  tf
     }()
@@ -96,22 +96,22 @@ class CreateActivityView: UIView {
         btn.tintColor = .white.withAlphaComponent(0.5)
         btn.layer.borderColor = UIColor.white.withAlphaComponent(0.5).cgColor
         btn.layer.borderWidth = 2
-        btn.titleLabel?.setFont(fontName: .robotoBold, sizeXS: 20)
+        btn.titleLabel?.setFont(fontName: .KanitBold, sizeXS: 20)
         if #available(iOS 15, *) {
             var config = UIButton.Configuration.plain()
             config.background.backgroundColor = UIColor.clear
-            config.background.cornerRadius = Constants.buttonSize.height/2
+            config.background.cornerRadius = 10
             config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
                 var outgoing = incoming
-                outgoing.font = UIFont(font: .robotoBold, size: 20)
+                outgoing.font = UIFont(font: .KanitBold, size: 20)
                 return outgoing
             }
             btn.configuration = config
         } else {
             btn.backgroundColor = .clear
-            btn.titleLabel?.setFont(fontName: .robotoBold, sizeXS: 20)
+            btn.titleLabel?.setFont(fontName: .KanitBold, sizeXS: 20)
         }
-        btn.layer.cornerRadius = Constants.buttonSize.height/2
+        btn.layer.cornerRadius = 10
         btn.setTitleColor(UIColor.white.withAlphaComponent(0.5), for: .normal)
         return btn
     }()
@@ -122,15 +122,15 @@ class CreateActivityView: UIView {
         btn.setTitle(Constants.createTitle, for: .normal)
         btn.setImage(UIImage(named: "CreateActivityTab")?.withRenderingMode(.alwaysTemplate), for: .normal)
         btn.tintColor = .white
-        btn.titleLabel!.setFont(fontName: .robotoBold, sizeXS: 20)
+        btn.titleLabel!.setFont(fontName: .KanitBold, sizeXS: 20)
         if #available(iOS 15, *) {
             var config = UIButton.Configuration.plain()
             config.imagePadding = 10
             config.background.backgroundColor = UIColor.AppCollors.red
-            config.background.cornerRadius = Constants.buttonSize.height/2
+            config.background.cornerRadius = 10
             config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
                 var outgoing = incoming
-                outgoing.font = UIFont(font: .robotoBold, size: 20)
+                outgoing.font = UIFont(font: .KanitBold, size: 20)
                 return outgoing
             }
             btn.configuration = config
@@ -138,7 +138,7 @@ class CreateActivityView: UIView {
             btn.imageEdgeInsets.right = 15
             btn.backgroundColor = .AppCollors.red
         }
-        btn.layer.cornerRadius = Constants.buttonSize.height/2
+        btn.layer.cornerRadius = 10
         btn.setTitleColor(.white, for: .normal)
         return btn
     }()
@@ -196,26 +196,27 @@ class CreateActivityView: UIView {
     func allowToSavePhoto(_ isAllow: Bool) {
         if #available(iOS 15, *) {
             var config = UIButton.Configuration.plain()
-            config.background.backgroundColor = isAllow ? UIColor.white : UIColor.clear
-            config.background.cornerRadius = Constants.buttonSize.height/2
+            config.background.backgroundColor = isAllow ? UIColor.AppCollors.red : UIColor.clear
+            config.background.cornerRadius = 10
             config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
                 var outgoing = incoming
-                outgoing.font = UIFont(font: .robotoBold, size: 20)
+                outgoing.font = UIFont(font: .KanitBold, size: 20)
                 return outgoing
             }
             attachPhotoButton.configuration = config
         } else {
-            attachPhotoButton.backgroundColor = isAllow ? .white : .clear
+            attachPhotoButton.backgroundColor = isAllow ? .AppCollors.red : .clear
         }
-        let color = isAllow ? UIColor.AppCollors.backgroundBlue : UIColor.white.withAlphaComponent(0.5)
+        let color = isAllow ? UIColor.white : UIColor.white.withAlphaComponent(0.5)
         let title = isAllow ? Constants.attachedPhotoTitle : Constants.attachPhotoTitle
+        attachPhotoButton.layer.borderColor = isAllow ? UIColor.AppCollors.red.cgColor : UIColor.white.withAlphaComponent(0.5).cgColor
         attachPhotoButton.setTitleColor(color, for: .normal)
         attachPhotoButton.setTitle(title, for: .normal)
     }
     
     func allowToSaveName(_ isAllow: Bool) {
         nameOfActivityTextField.textColor = isAllow ? UIColor.white : UIColor.white.withAlphaComponent(0.5)
-        nameOfActivityTextField.layer.borderColor = isAllow ? UIColor.white.cgColor : UIColor.white.withAlphaComponent(0.5).cgColor
+        nameOfActivityTextField.layer.borderColor = isAllow ? UIColor.AppCollors.red.cgColor : UIColor.white.withAlphaComponent(0.5).cgColor
     }
     
     func showCurrentImage(imageData: Data?) {
@@ -269,7 +270,7 @@ class CreateActivityView: UIView {
         guard
             !forceDisable
         else {
-            mainButton.backgroundColor = UIColor(netHex: 0xFC7B80)
+            mainButton.backgroundColor = UIColor(netHex: 0x323232)
             return
         }
         mainButton.alpha = 1
@@ -292,7 +293,7 @@ class CreateActivityView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = .AppCollors.backgroundBlue
+        backgroundColor = .AppCollors.backgroundBlack
         backButton.addTarget(nil, action: #selector(CreateActivityViewController.backButtonTapped), for: .touchUpInside)
         
         addSubview(logoImageView)
@@ -310,11 +311,13 @@ class CreateActivityView: UIView {
         //final result
         addSubview(finalView)
         addSubview(stackView)
-        let adaptedTopHeight = adapted(dimensionSize: 51, to: .height)
+        let sizeLogo = resized(size: CGSize(width: 67, height: 86), basedOn: .height)
         NSLayoutConstraint.activate([
             logoImageView.centerXAnchor.constraint(equalTo: logoImageView.superview!.centerXAnchor),
             logoImageView.topAnchor.constraint(equalTo: logoImageView.superview!.safeTopAnchor,
-                                               constant: adaptedTopHeight),
+                                               constant: 46),
+            logoImageView.widthAnchor.constraint(equalToConstant: sizeLogo.width),
+            logoImageView.heightAnchor.constraint(equalToConstant: sizeLogo.height)
         ])
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -363,7 +366,7 @@ class CreateActivityView: UIView {
         
         // final result
         finalView.translatesAutoresizingMaskIntoConstraints = false
-        finalView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 0).isActive = true
+        finalView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 37).isActive = true
         finalView.leftAnchor.constraint(equalTo: finalView.superview!.leftAnchor).isActive = true
         finalView.rightAnchor.constraint(equalTo: finalView.superview!.rightAnchor).isActive = true
         finalView.bottomAnchor.constraint(equalTo: mainButton.topAnchor, constant: -10).isActive = true

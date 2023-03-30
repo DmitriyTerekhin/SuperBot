@@ -20,7 +20,7 @@ class CreateActivityPointsView: UIView {
         let lbl = UILabel()
         lbl.textColor = UIColor.white
         lbl.text = Constants.urgentText
-        lbl.setFont(fontName: .robotoBold, sizeXS: 16)
+        lbl.setFont(fontName: .KanitBold, sizeXS: 16)
         return lbl
     }()
     
@@ -44,7 +44,7 @@ class CreateActivityPointsView: UIView {
         let lbl = UILabel()
         lbl.textColor = UIColor.white
         lbl.text = Constants.importantText
-        lbl.setFont(fontName: .robotoBold, sizeXS: 16)
+        lbl.setFont(fontName: .KanitBold, sizeXS: 16)
         return lbl
     }()
     
@@ -110,7 +110,7 @@ class CreateActivityPointsView: UIView {
         addSubview(urgentLabel)
         urgentLabel.leftAnchor.constraint(equalTo: urgentLabel.superview!.leftAnchor, constant: 52).isActive = true
         urgentLabel.rightAnchor.constraint(equalTo: urgentLabel.superview!.rightAnchor, constant: -52).isActive = true
-        urgentLabel.topAnchor.constraint(equalTo: pointImageView.bottomAnchor, constant: 0).isActive = true
+        urgentLabel.topAnchor.constraint(equalTo: pointImageView.bottomAnchor, constant: -10).isActive = true
         urgentLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let adapted20 = adapted(dimensionSize: 20, to: .height)
@@ -130,7 +130,7 @@ class CreateActivityPointsView: UIView {
         urgentSlider.heightAnchor.constraint(equalToConstant: adapted20).isActive = true
         urgentSlider.translatesAutoresizingMaskIntoConstraints = false
         
-        let topDistanceImportLabel: CGFloat = UIScreen.current.rawValue <= 2 ? 20 : 35
+        let topDistanceImportLabel: CGFloat = UIScreen.current.rawValue <= 2 ? 10 : 25
         let importTop = adapted(dimensionSize: topDistanceImportLabel, to: .height)
         addSubview(importantLabel)
         importantLabel.leftAnchor.constraint(equalTo: importantLabel.superview!.leftAnchor, constant: 52).isActive = true

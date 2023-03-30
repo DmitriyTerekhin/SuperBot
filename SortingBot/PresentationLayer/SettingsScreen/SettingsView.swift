@@ -38,12 +38,15 @@ class SettingsView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = .AppCollors.backgroundBlue
+        backgroundColor = .AppCollors.backgroundBlack
         addSubview(logoImageView)
-        let adaptedTopHeight = adapted(dimensionSize: 51, to: .height)
+        let sizeLogo = resized(size: CGSize(width: 67, height: 86), basedOn: .height)
         NSLayoutConstraint.activate([
             logoImageView.centerXAnchor.constraint(equalTo: logoImageView.superview!.centerXAnchor),
-            logoImageView.topAnchor.constraint(equalTo: logoImageView.superview!.safeTopAnchor, constant: adaptedTopHeight),
+            logoImageView.topAnchor.constraint(equalTo: logoImageView.superview!.safeTopAnchor,
+                                               constant: 46),
+            logoImageView.widthAnchor.constraint(equalToConstant: sizeLogo.width),
+            logoImageView.heightAnchor.constraint(equalToConstant: sizeLogo.height)
         ])
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(tableView)
