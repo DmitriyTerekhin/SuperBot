@@ -4,6 +4,11 @@
 <dict>
 	<key>NSAdvertisingAttributionReportEndpoint</key>
 	<string>https://postbacks-is.com </string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>
@@ -21,11 +26,6 @@
 		<string>Roboto-Black.ttf</string>
 		<string>Roboto-Medium.ttf</string>
 	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
